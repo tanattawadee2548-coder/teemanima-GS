@@ -1790,10 +1790,239 @@ footer ul{
         transition-duration:.01ms!important;
     }
 }
+
+/* =========================================================
+   WOW MODE — presentation effects
+========================================================= */
+html{scroll-padding-top:90px}
+body{cursor:default}
+body::selection{background:#ff4f91;color:#fff}
+
+/* cinematic intro */
+.wow-intro{
+  position:fixed;inset:0;z-index:99999;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 45%,#7d1655 0,#26081f 42%,#08040b 100%);
+  color:#fff;overflow:hidden;transition:opacity .9s,visibility .9s;
+}
+.wow-intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.wow-intro::before{
+  content:"";position:absolute;inset:-50%;
+  background:conic-gradient(from 0deg,transparent 0 20%,rgba(255,255,255,.07) 25%,transparent 30% 55%,rgba(255,105,180,.08) 60%,transparent 70%);
+  animation:spin 18s linear infinite;
+}
+.intro-stars{position:absolute;inset:0}
+.intro-stars i{position:absolute;color:#fff;font-style:normal;animation:introTwinkle 1.8s infinite}
+.intro-stars i:nth-child(1){left:12%;top:20%;font-size:18px}
+.intro-stars i:nth-child(2){left:78%;top:16%;animation-delay:.3s}
+.intro-stars i:nth-child(3){left:20%;top:72%;animation-delay:.7s}
+.intro-stars i:nth-child(4){left:84%;top:70%;animation-delay:1s}
+.intro-stars i:nth-child(5){left:50%;top:10%;animation-delay:1.3s}
+.intro-core{position:relative;z-index:2;text-align:center}
+.intro-moon{
+  width:105px;height:105px;margin:0 auto 24px;border-radius:50%;
+  background:radial-gradient(circle at 35% 28%,#fff,#ffe9a8 38%,#ff8fbd 72%,#b41461);
+  box-shadow:0 0 35px #fff7,0 0 110px #ff4f9188;
+  animation:introMoon 2s ease-in-out infinite alternate;
+}
+.intro-brand{font-size:clamp(38px,7vw,78px);font-weight:1000;letter-spacing:8px}
+.intro-sub{margin-top:10px;color:#ffd9eb;letter-spacing:3px;font-size:12px}
+.intro-loader{width:210px;height:4px;border-radius:9px;background:#ffffff22;margin:28px auto 0;overflow:hidden}
+.intro-loader b{display:block;width:0;height:100%;background:linear-gradient(90deg,#ffd166,#ff4f91);animation:loadbar 1.8s ease forwards}
+
+/* scroll progress */
+.scroll-progress{position:fixed;top:0;left:0;width:0;height:4px;z-index:10001;background:linear-gradient(90deg,#ffd166,#ff4f91,#9c27b0);box-shadow:0 0 14px #ff4f91;pointer-events:none}
+
+/* ambient floating particles */
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+.ambient span{position:absolute;color:#ff9bc4;opacity:.45;animation:floatUp linear infinite}
+.ambient span:nth-child(1){left:8%;top:85%;animation-duration:12s}
+.ambient span:nth-child(2){left:24%;top:105%;animation-duration:16s;animation-delay:2s}
+.ambient span:nth-child(3){left:51%;top:95%;animation-duration:14s;animation-delay:1s}
+.ambient span:nth-child(4){left:72%;top:110%;animation-duration:18s;animation-delay:4s}
+.ambient span:nth-child(5){left:91%;top:90%;animation-duration:13s;animation-delay:3s}
+
+/* glow cursor */
+.cursor-glow{position:fixed;width:180px;height:180px;border-radius:50%;pointer-events:none;z-index:9998;
+  background:radial-gradient(circle,rgba(255,105,180,.12),transparent 65%);transform:translate(-50%,-50%);mix-blend-mode:screen}
+@media(max-width:850px){.cursor-glow{display:none}}
+
+/* hero depth */
+.hero-content,.moon-stage{will-change:transform}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.03),transparent);transform:translateX(-100%);animation:sheen 7s infinite}
+
+/* animated category spotlight */
+.category-card{transform-style:preserve-3d}
+.category-card::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.35),transparent 55%);transform:translateX(-120%);transition:.7s}
+.category-card:hover::before{transform:translateX(120%)}
+
+/* product wow */
+.product-card{transform-style:preserve-3d}
+.product-card::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:23px;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.24),transparent 70%);
+  transform:translateX(-120%);transition:.7s;z-index:4}
+.product-card:hover::before{transform:translateX(120%)}
+.product-visual{background:linear-gradient(135deg,#fff,#fff0f6)}
+.add-cart{position:relative;overflow:hidden}
+.add-cart::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
+  transform:translateX(-120%);transition:.5s}
+.add-cart:hover::after{transform:translateX(120%)}
+
+/* number counter / section reveal */
+.section.reveal.visible .section-title{animation:titlePop .65s cubic-bezier(.2,.8,.2,1)}
+.trust-item:hover .trust-icon{animation:bounce .6s}
+.feature:hover{transform:translateY(-8px) scale(1.01);transition:.3s;box-shadow:var(--shadow)}
+
+/* surprise spotlight */
+.lucky-wrap{position:relative;overflow:hidden}
+.lucky-wrap::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,#ff4f9130,transparent 65%);left:15%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
+
+/* toast stronger */
+.toast{border:1px solid #ffffff1a;backdrop-filter:blur(14px)}
+
+/* animations */
+@keyframes introMoon{to{transform:translateY(-10px) scale(1.04)}}
+@keyframes introTwinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.25)}}
+@keyframes loadbar{to{width:100%}}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:.5}100%{transform:translateY(-115vh) rotate(260deg);opacity:0}}
+@keyframes sheen{0%,55%{transform:translateX(-100%)}75%,100%{transform:translateX(100%)}}
+@keyframes titlePop{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes bounce{50%{transform:translateY(-6px) scale(1.12)}}
+
+
+/* ===== V2: SEARCH GATE + CATEGORY PRODUCT ROOMS ===== */
+.search-gate{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;background:
+ radial-gradient(circle at 50% 40%,#8b1760 0,#26091f 45%,#07040a 100%);transition:.8s;overflow:hidden}
+.search-gate.hide{opacity:0;visibility:hidden;pointer-events:none}
+.search-gate-card{width:min(680px,calc(100% - 32px));padding:42px 34px;border:1px solid #ffffff25;border-radius:30px;
+ background:rgba(20,8,22,.7);backdrop-filter:blur(22px);box-shadow:0 30px 100px #0008;text-align:center;position:relative;z-index:2}
+.search-gate-moon{font-size:70px;filter:drop-shadow(0 0 25px #ff9ac8);animation:gateMoon 2.4s ease-in-out infinite alternate}
+.search-gate h1{font-size:clamp(30px,6vw,55px);margin:10px 0 8px;letter-spacing:3px}
+.search-gate p{color:#ffd8eb;margin:0 auto 24px}
+.search-gate-form{display:flex;gap:10px;background:#fff;padding:7px;border-radius:18px}
+.search-gate-form input{flex:1;border:0;outline:0;padding:15px 16px;font-size:15px;border-radius:13px;font-family:inherit}
+.search-gate-form button{border:0;border-radius:14px;padding:0 22px;background:linear-gradient(135deg,#ff4f91,#a72c7d);color:#fff;font-weight:900;cursor:pointer}
+.search-hints{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:15px}
+.search-hints button{border:1px solid #ffffff22;background:#ffffff0d;color:#ffe4f1;border-radius:99px;padding:8px 12px;cursor:pointer}
+.search-hints button:hover{background:#ffffff18}
+.search-result-note{font-size:12px;color:var(--muted);margin:10px 0 0}
+.category-room{display:none;padding:30px 0 80px;min-height:70vh}
+.category-room.active{display:block;animation:roomIn .55s ease}
+.room-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:24px}
+.room-title{font-size:clamp(28px,4vw,44px);margin:0}
+.room-title span{color:var(--primary)}
+.room-sub{color:var(--muted);margin:6px 0 0}
+.room-back{border:1px solid #ffffff20;background:var(--card);color:var(--text);padding:11px 16px;border-radius:13px;cursor:pointer;font-weight:800}
+.room-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.room-card{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:.35s;position:relative}
+.room-card:hover{transform:translateY(-8px) rotateX(2deg);box-shadow:0 22px 50px rgba(0,0,0,.14)}
+.room-img{height:190px;overflow:hidden;background:#fff0f6}
+.room-img img{width:100%;height:100%;object-fit:cover;transition:.55s}
+.room-card:hover .room-img img{transform:scale(1.09)}
+.room-info{padding:14px}
+.room-tag{font-size:10px;color:var(--primary);font-weight:900}
+.room-info h3{font-size:15px;margin:5px 0 7px}
+.room-price{font-weight:1000;font-size:18px}
+.room-btn{width:100%;border:0;background:var(--primary);color:#fff;border-radius:11px;padding:10px;margin-top:11px;font-weight:900;cursor:pointer}
+.room-btn:hover{filter:brightness(1.08)}
+.category-tabs{display:flex;gap:9px;overflow:auto;padding:4px 0 18px}
+.category-tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:99px;padding:9px 14px;cursor:pointer}
+.category-tabs button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+@media(max-width:1100px){.room-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){.search-gate-card{padding:32px 20px}.search-gate-form{flex-direction:column;background:transparent}.search-gate-form input,.search-gate-form button{height:50px}.room-grid{grid-template-columns:repeat(2,1fr)}.room-img{height:150px}.room-head{align-items:start;flex-direction:column}}
+@media(max-width:420px){.room-grid{grid-template-columns:1fr}}
+@keyframes gateMoon{to{transform:translateY(-9px) rotate(7deg) scale(1.05)}}
+@keyframes roomIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+
+
+/* =========================================================
+   MOON V4 — USEFUL WOW LAYER
+   Soft premium UI + smart gift assistant + shipping progress
+========================================================= */
+:root{
+  --soft:#fffafd;
+  --soft2:#fff2f8;
+  --ink:#302633;
+  --lav:#8b6bb1;
+  --rose:#e96b9a;
+  --mint:#79b9a7;
+}
+body{background:radial-gradient(circle at 8% 15%,rgba(233,107,154,.055),transparent 24%),radial-gradient(circle at 92% 45%,rgba(139,107,177,.055),transparent 25%),var(--bg)}
+::selection{background:#f3a4c1;color:#fff}
+.smart-section{margin:85px auto;max-width:1120px;padding:0 20px}
+.smart-shell{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,246,251,.86));border-radius:32px;padding:34px;box-shadow:0 24px 70px rgba(86,22,66,.09)}
+body.dark .smart-shell{background:linear-gradient(135deg,rgba(31,20,37,.94),rgba(47,25,44,.88))}
+.smart-shell:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-90px;top:-100px;background:radial-gradient(circle,rgba(233,107,154,.16),transparent 68%);pointer-events:none}
+.smart-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:25px;position:relative;z-index:1}
+.smart-kicker{font-size:11px;font-weight:900;letter-spacing:1.8px;color:var(--rose)}
+.smart-head h2{font-size:clamp(27px,4vw,40px);margin:6px 0 7px;letter-spacing:-1px}
+.smart-head p{color:var(--muted);line-height:1.7;font-size:13px}
+.smart-chip{padding:9px 12px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.65);font-size:11px;font-weight:800;white-space:nowrap}
+body.dark .smart-chip{background:rgba(255,255,255,.06)}
+.assistant-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;position:relative;z-index:1}
+.assistant-card{border:1px solid var(--line);border-radius:23px;padding:22px;background:rgba(255,255,255,.62);backdrop-filter:blur(14px)}
+body.dark .assistant-card{background:rgba(255,255,255,.035)}
+.assistant-card h3{font-size:18px;margin-bottom:7px}.assistant-card>p{font-size:12px;color:var(--muted);line-height:1.7}
+.choice-label{display:block;font-size:11px;font-weight:900;margin:17px 0 8px}.choice-row{display:flex;flex-wrap:wrap;gap:8px}
+.choice{border:1px solid var(--line);background:var(--bg);color:var(--text);padding:9px 12px;border-radius:12px;font-size:11px;cursor:pointer;transition:.2s}.choice:hover,.choice.active{background:var(--rose);border-color:var(--rose);color:#fff;transform:translateY(-2px)}
+.assistant-result{margin-top:17px;padding:16px;border-radius:18px;background:linear-gradient(135deg,rgba(233,107,154,.09),rgba(139,107,177,.08));border:1px solid rgba(233,107,154,.12);display:none}.assistant-result.show{display:block;animation:roomIn .4s ease}.match-score{font-size:25px;font-weight:1000;color:var(--rose)}
+.match-reasons{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0}.reason{font-size:10px;padding:6px 9px;border-radius:99px;background:rgba(255,255,255,.72);border:1px solid var(--line)}
+body.dark .reason{background:rgba(255,255,255,.06)}
+.pick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.pick{border:1px solid var(--line);border-radius:17px;padding:10px;background:var(--bg2);transition:.25s}.pick:hover{transform:translateY(-4px);box-shadow:var(--shadow2)}.pick img{width:100%;height:125px;object-fit:cover;border-radius:12px;display:block;background:var(--soft2)}.pick strong{font-size:12px;display:block;margin:9px 2px 3px}.pick small{color:var(--muted)}
+.shipping-card{margin-top:18px;padding:16px;border-radius:18px;background:rgba(121,185,167,.08);border:1px solid rgba(121,185,167,.18)}.shipping-top{display:flex;justify-content:space-between;gap:10px;font-size:11px;font-weight:800}.shipping-track{height:9px;border-radius:99px;background:rgba(121,185,167,.14);overflow:hidden;margin:10px 0 6px}.shipping-bar{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#8bc7b6,#e6b5cb);transition:.5s}.shipping-note{font-size:10px;color:var(--muted)}
+.quick-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.tool-card{border:1px solid var(--line);border-radius:18px;padding:17px;background:var(--bg2);transition:.25s}.tool-card:hover{transform:translateY(-4px);box-shadow:var(--shadow2)}.tool-icon{font-size:25px;margin-bottom:8px}.tool-card strong{display:block;font-size:12px}.tool-card span{display:block;color:var(--muted);font-size:10px;line-height:1.6;margin-top:4px}
+#smartSearchOutput{margin-top:16px}.smart-search-form{display:flex;gap:8px;margin-top:13px}.smart-search-form input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);color:var(--text);padding:12px;border-radius:12px;outline:0}.smart-search-form button{border:0;border-radius:12px;padding:0 17px;background:var(--rose);color:#fff;font-weight:900}
+@media(max-width:850px){.assistant-grid{grid-template-columns:1fr}.smart-head{align-items:flex-start;flex-direction:column}.quick-tools{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.smart-shell{padding:22px 16px;border-radius:24px}.pick-grid{grid-template-columns:1fr 1fr}.pick img{height:105px}.quick-tools{grid-template-columns:1fr}.smart-search-form{flex-direction:column}.smart-search-form button{padding:12px}}
+
 </style>
 </head>
 
 <body>
+
+<!-- WOW PRESENTATION LAYER -->
+
+<div class="search-gate" id="searchGate">
+  <div class="intro-stars"><i>✦</i><i>✧</i><i>✦</i><i>✧</i><i>✦</i></div>
+  <div class="search-gate-card">
+    <div class="search-gate-moon">🌙</div>
+    <h1>ยินดีต้อนรับสู่ MOON</h1>
+    <p>ก่อนเข้าสู่ร้าน ลองบอกเราหน่อยว่า <b>“สิ่งที่คุณอยากหา”</b> คืออะไร ✨</p>
+    <form class="search-gate-form" onsubmit="enterMoon(event)">
+      <input id="entrySearch" autocomplete="off" placeholder="เช่น ของขวัญน่ารัก, กระเป๋า, เครื่องเขียน..." />
+      <button type="submit">🔎 เข้าสู่ร้าน</button>
+    </form>
+    <div class="search-hints">
+      <button type="button" onclick="quickEntry('ของขวัญ')">🎁 ของขวัญ</button>
+      <button type="button" onclick="quickEntry('แฟชั่น')">👜 แฟชั่น</button>
+      <button type="button" onclick="quickEntry('เครื่องเขียน')">📚 เครื่องเขียน</button>
+      <button type="button" onclick="quickEntry('แต่งห้อง')">🛋️ แต่งห้อง</button>
+      <button type="button" onclick="quickEntry('อุปกรณ์มือถือ')">📱 มือถือ</button>
+    </div>
+    <div class="search-result-note" id="entryNote">พิมพ์สิ่งที่อยากหา แล้วระบบจะพาไปหมวดที่เหมาะที่สุด</div>
+  </div>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<div class="wow-intro" id="wowIntro">
+  <div class="intro-stars">
+    <i>✦</i><i>✧</i><i>✦</i><i>✧</i><i>✦</i>
+  </div>
+  <div class="intro-core">
+    <div class="intro-moon"></div>
+    <div class="intro-brand">MOON</div>
+    <div class="intro-sub">GIFT SHOP • PREMIUM INTERACTIVE EXPERIENCE</div>
+    <div class="intro-loader"><b></b></div>
+  </div>
+</div>
+
+<div class="ambient" aria-hidden="true">
+  <span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span>
+</div>
+
 
 <!-- =======================================================
      HEADER
@@ -1809,6 +2038,7 @@ footer ul{
     <nav>
         <a href="#home">หน้าแรก</a>
         <a href="#shop">สินค้า</a>
+        <a href="#smart">Smart Match</a>
         <a href="#gift">Gift Finder</a>
         <a href="#surprise">Surprise</a>
         <a href="#store">ร้าน</a>
@@ -1896,6 +2126,10 @@ footer ul{
             <div>✓ ส่งต่อความน่ารัก</div>
 
         </div>
+
+<div style="margin-top:18px;font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.3px">
+  ✨ ลองเลื่อนหน้าเว็บ • Hover สินค้า • กดหัวใจ • หมุนวงล้อ • ทดลอง Checkout
+</div>
 
     </div>
 
@@ -2459,6 +2693,90 @@ footer ul{
 <!-- =======================================================
      FOOTER
 ======================================================= -->
+
+
+
+
+<!-- =======================================================
+     SMART SHOPPING ASSISTANT — V4
+======================================================= -->
+<section class="smart-section reveal" id="smart" aria-label="ผู้ช่วยเลือกสินค้า">
+  <div class="smart-shell">
+    <div class="smart-head">
+      <div>
+        <div class="smart-kicker">MOON SMART EXPERIENCE</div>
+        <h2>เลือกของให้ตรงใจ <span style="color:var(--rose)">โดยไม่ต้องคิดนาน ✨</span></h2>
+        <p>บอกเราแค่ว่าจะซื้อให้ใคร งบเท่าไหร่ และอยากได้สไตล์ไหน ระบบจะช่วยคัดไอเดียให้</p>
+      </div>
+      <div class="smart-chip">AI-style Gift Match</div>
+    </div>
+
+    <div class="assistant-grid">
+      <div class="assistant-card">
+        <h3>💗 Gift Match</h3>
+        <p>ตอบ 3 ข้อ แล้วดูคำแนะนำแบบทันที</p>
+        <label class="choice-label">1. ซื้อให้ใคร?</label>
+        <div class="choice-row" data-group="who">
+          <button class="choice" onclick="smartChoose(this,'who','แฟน')">💗 แฟน</button>
+          <button class="choice" onclick="smartChoose(this,'who','เพื่อน')">🫶 เพื่อน</button>
+          <button class="choice" onclick="smartChoose(this,'who','ตัวเอง')">🌙 ตัวเอง</button>
+          <button class="choice" onclick="smartChoose(this,'who','ครอบครัว')">🏡 ครอบครัว</button>
+        </div>
+        <label class="choice-label">2. งบประมาณ?</label>
+        <div class="choice-row" data-group="budget">
+          <button class="choice" onclick="smartChoose(this,'budget',200)">฿200</button>
+          <button class="choice" onclick="smartChoose(this,'budget',350)">฿350</button>
+          <button class="choice" onclick="smartChoose(this,'budget',500)">฿500</button>
+          <button class="choice" onclick="smartChoose(this,'budget',800)">฿800+</button>
+        </div>
+        <label class="choice-label">3. สไตล์?</label>
+        <div class="choice-row" data-group="style">
+          <button class="choice" onclick="smartChoose(this,'style','น่ารัก')">🎀 น่ารัก</button>
+          <button class="choice" onclick="smartChoose(this,'style','มินิมอล')">☁️ มินิมอล</button>
+          <button class="choice" onclick="smartChoose(this,'style','แฟชั่น')">👜 แฟชั่น</button>
+          <button class="choice" onclick="smartChoose(this,'style','ใช้งานได้จริง')">✨ ใช้งานได้จริง</button>
+        </div>
+        <div class="assistant-result" id="assistantResult"></div>
+      </div>
+
+      <div class="assistant-card">
+        <h3>🔎 ค้นหาแบบเข้าใจคน</h3>
+        <p>ไม่ต้องรู้ชื่อสินค้า แค่บอกความต้องการ เช่น “ของขวัญให้แฟน งบ 500”</p>
+        <form class="smart-search-form" onsubmit="smartSearch(event)">
+          <input id="smartSearchInput" placeholder="เช่น ของแต่งห้องน่ารัก ๆ..." autocomplete="off">
+          <button>ค้นหา</button>
+        </form>
+        <div id="smartSearchOutput"></div>
+        <div class="shipping-card">
+          <div class="shipping-top"><span>🚚 ส่งฟรีเมื่อครบ ฿799</span><span id="shippingText">เริ่มช้อปได้เลย</span></div>
+          <div class="shipping-track"><div class="shipping-bar" id="shippingBar"></div></div>
+          <div class="shipping-note" id="shippingNote">เพิ่มสินค้าในตะกร้า แล้วแถบนี้จะอัปเดตให้อัตโนมัติ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quick-tools">
+      <div class="tool-card" onclick="document.getElementById('gift')?.scrollIntoView({behavior:'smooth'})"><div class="tool-icon">🎁</div><strong>Gift Finder</strong><span>ช่วยเลือกของขวัญตามโอกาส</span></div>
+      <div class="tool-card" onclick="document.getElementById('surprise')?.scrollIntoView({behavior:'smooth'})"><div class="tool-icon">🎡</div><strong>Lucky Surprise</strong><span>หมุนรับสิทธิ์และส่วนลด</span></div>
+      <div class="tool-card" onclick="openCart()"><div class="tool-icon">🛒</div><strong>ดูตะกร้า</strong><span>เช็กสินค้าและยอดรวมได้ทันที</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="categoryRooms" class="category-room">
+  <div class="container">
+    <div class="room-head">
+      <div>
+        <div class="eyebrow">MOON COLLECTION ROOMS</div>
+        <h2 class="room-title">เลือกห้องสินค้า <span>✨</span></h2>
+        <p class="room-sub">แต่ละหมวดมีสินค้าเพิ่มเติม 6 ชิ้น พร้อมภาพประกอบและปุ่มเพิ่มลงตะกร้า</p>
+      </div>
+      <button class="room-back" onclick="backToShop()">← กลับหน้าหลัก</button>
+    </div>
+    <div class="category-tabs" id="categoryTabs"></div>
+    <div id="roomContents"></div>
+  </div>
+</section>
 
 <footer>
 
@@ -5175,6 +5493,298 @@ document
             }
         }
     );
+
+
+/* =========================================================
+   WOW INTERACTIONS
+========================================================= */
+(function(){
+  const intro = document.getElementById("wowIntro");
+  setTimeout(()=>intro.classList.add("hide"), 2100);
+
+  const progress = document.getElementById("scrollProgress");
+  const cursor = document.getElementById("cursorGlow");
+
+  function updateProgress(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+  }
+  window.addEventListener("scroll", updateProgress, {passive:true});
+  updateProgress();
+
+  window.addEventListener("pointermove", e=>{
+    if(cursor){
+      cursor.animate(
+        [{left:cursor.style.left||e.clientX+"px",top:cursor.style.top||e.clientY+"px"},
+         {left:e.clientX+"px",top:e.clientY+"px"}],
+        {duration:220,fill:"forwards",easing:"ease-out"}
+      );
+    }
+  });
+
+  // 3D tilt for cards
+  document.addEventListener("mousemove", e=>{
+    document.querySelectorAll(".product-card,.category-card,.feature").forEach(card=>{
+      if(window.innerWidth < 900) return;
+      const r = card.getBoundingClientRect();
+      if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom){
+        card.style.transform = "";
+        return;
+      }
+      const x = (e.clientX-r.left)/r.width-.5;
+      const y = (e.clientY-r.top)/r.height-.5;
+      card.style.transform = `perspective(900px) rotateY(${x*5}deg) rotateX(${-y*5}deg) translateY(-7px)`;
+    });
+  });
+
+  // subtle hero parallax
+  window.addEventListener("scroll",()=>{
+    const y = window.scrollY;
+    const hero = document.querySelector(".hero-content");
+    const moon = document.querySelector(".moon-stage");
+    if(hero && y < 900) hero.style.transform = `translateY(${y*.08}px)`;
+    if(moon && y < 900) moon.style.transform = `translateY(calc(-50% + ${y*.035}px))`;
+  },{passive:true});
+
+  // confetti burst utility
+  window.moonConfetti = function(){
+    const chars=["✦","✧","💖","🌙","✨","🎁"];
+    for(let i=0;i<34;i++){
+      const s=document.createElement("span");
+      s.textContent=chars[Math.floor(Math.random()*chars.length)];
+      Object.assign(s.style,{
+        position:"fixed",left:"50%",top:"45%",zIndex:99999,pointerEvents:"none",
+        fontSize:(12+Math.random()*20)+"px",
+        color:["#ff4f91","#ffd166","#fff","#ce93d8"][Math.floor(Math.random()*4)]
+      });
+      document.body.appendChild(s);
+      const a=Math.random()*Math.PI*2, d=80+Math.random()*300;
+      s.animate([
+        {transform:"translate(-50%,-50%) scale(.4)",opacity:1},
+        {transform:`translate(calc(-50% + ${Math.cos(a)*d}px),calc(-50% + ${Math.sin(a)*d}px)) rotate(${Math.random()*600-300}deg)`,opacity:0}
+      ],{duration:900+Math.random()*700,easing:"cubic-bezier(.1,.8,.2,1)"}).onfinish=()=>s.remove();
+    }
+  };
+
+  // Hook existing toast so important moments feel like a celebration
+  const originalToast = window.showToast;
+  if(typeof originalToast === "function"){
+    window.showToast = function(message){
+      originalToast(message);
+      if(/🎉|❤️|MOON|สำเร็จ|เพิ่ม/.test(message)) moonConfetti();
+    }
+  }
+
+  // make logo click easter egg much more dramatic
+  document.querySelector(".logo")?.addEventListener("dblclick",()=>{
+    moonConfetti();
+    document.body.animate(
+      [{transform:"scale(1)"},{transform:"scale(1.008)"},{transform:"scale(1)"}],
+      {duration:500}
+    );
+  });
+})();
+
+
+/* ===== V2 SEARCH GATE / CATEGORY ROOMS ===== */
+const moonRooms = {
+  "ของขวัญ":[
+    ["Moon Bear","฿390","https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=900&q=85"],
+    ["Pastel Gift Box","฿249","https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=900&q=85"],
+    ["Cloud Mug","฿220","https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=900&q=85"],
+    ["Mini Flower Box","฿299","https://images.unsplash.com/photo-1455582916367-25f75bfc6710?auto=format&fit=crop&w=900&q=85"],
+    ["Love Gift Set","฿459","https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=900&q=85"],
+    ["Surprise Bag","฿329","https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85"]
+  ],
+  "เครื่องเขียน":[
+    ["Dreamy Notebook","฿159","https://images.unsplash.com/photo-1531346680769-a1d79b57de5c?auto=format&fit=crop&w=900&q=85"],
+    ["Cute Sticker Set","฿89","https://images.unsplash.com/photo-1589884629108-3193400c7cc6?auto=format&fit=crop&w=900&q=85"],
+    ["Pastel Pen Set","฿119","https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=85"],
+    ["Pink Planner","฿199","https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=85"],
+    ["Moon Memo Pad","฿79","https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=900&q=85"],
+    ["Study Pouch","฿179","https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=85"]
+  ],
+  "แฟชั่น":[
+    ["Mini Shoulder Bag","฿590","https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=900&q=85"],
+    ["Moon Hair Clip","฿129","https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85"],
+    ["Soft Knit Bag","฿490","https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=85"],
+    ["Pearl Hair Bow","฿149","https://images.unsplash.com/photo-1523268755815-fe7c372a0349?auto=format&fit=crop&w=900&q=85"],
+    ["Korean Tote","฿550","https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85"],
+    ["Daily Cap","฿259","https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85"]
+  ],
+  "แต่งห้อง":[
+    ["Cloud Lamp","฿690","https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=85"],
+    ["Cute Cushion","฿329","https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=85"],
+    ["Moon Candle","฿189","https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=85"],
+    ["Desk Mirror","฿279","https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85"],
+    ["Mini Vase","฿159","https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85"],
+    ["Star Projector","฿799","https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=900&q=85"]
+  ],
+  "อุปกรณ์มือถือ":[
+    ["Moon Phone Case","฿199","https://images.unsplash.com/photo-1601593346740-925612772716?auto=format&fit=crop&w=900&q=85"],
+    ["Pastel Phone Charm","฿99","https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=900&q=85"],
+    ["Cute AirPods Case","฿229","https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=900&q=85"],
+    ["Phone Stand","฿159","https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85"],
+    ["Mini Power Bank","฿399","https://images.unsplash.com/photo-1609592424363-7c5c1b7b6d3b?auto=format&fit=crop&w=900&q=85"],
+    ["Cable Protector Set","฿79","https://images.unsplash.com/photo-1551721434-8b94ddc6d38a?auto=format&fit=crop&w=900&q=85"]
+  ]
+};
+
+function normalizeThai(s){
+  return (s||"").toLowerCase().replace(/\s+/g,"");
+}
+function chooseRoom(text){
+  const t=normalizeThai(text);
+  const keys=[
+    ["เครื่องเขียน",["เครื่องเขียน","สมุด","ปากกา","สติ๊กเกอร์","stationery","เรียน","จด"]],
+    ["แฟชั่น",["แฟชั่น","กระเป๋า","หมวก","กิ๊บ","เสื้อ","fashion","แต่งตัว"]],
+    ["แต่งห้อง",["แต่งห้อง","ห้อง","โคมไฟ","หมอน","เทียน","โต๊ะ","room","decor"]],
+    ["อุปกรณ์มือถือ",["มือถือ","โทรศัพท์","เคส","airpods","สายชาร์จ","พาวเวอร์","phone"]],
+    ["ของขวัญ",["ของขวัญ","gift","ให้แฟน","วันเกิด","เซอร์ไพรส์","น่ารัก"]]
+  ];
+  for(const [room,words] of keys) if(words.some(w=>t.includes(normalizeThai(w)))) return room;
+  return "ของขวัญ";
+}
+function quickEntry(text){
+  document.getElementById("entrySearch").value=text;
+  enterMoon({preventDefault(){}});
+}
+function enterMoon(e){
+  e.preventDefault();
+  const input=document.getElementById("entrySearch");
+  const text=input.value.trim();
+  if(!text){
+    input.focus();
+    document.getElementById("entryNote").textContent="✨ ลองพิมพ์สิ่งที่คุณอยากหา เช่น “ของขวัญ” หรือ “กระเป๋า”";
+    return;
+  }
+  const room=chooseRoom(text);
+  localStorage.setItem("moonEntrySearch",text);
+  localStorage.setItem("moonEntryRoom",room);
+  document.getElementById("searchGate").classList.add("hide");
+  setTimeout(()=>showRoom(room),350);
+}
+function renderRoom(room){
+  const list=moonRooms[room]||moonRooms["ของขวัญ"];
+  const wrap=document.getElementById("roomContents");
+  wrap.innerHTML=`
+    <div class="room-grid">
+      ${list.map((p,i)=>`
+        <article class="room-card">
+          <div class="room-img"><img src="${p[2]}" alt="${p[0]}" loading="lazy"></div>
+          <div class="room-info">
+            <div class="room-tag">${room.toUpperCase()}</div>
+            <h3>${p[0]}</h3>
+            <div class="room-price">${p[1]}</div>
+            <button class="room-btn" onclick="roomAddToCart('${p[0]}','${p[1]}')">🛒 เพิ่มลงตะกร้า</button>
+          </div>
+        </article>
+      `).join("")}
+    </div>`;
+}
+function renderTabs(active){
+  const tabs=document.getElementById("categoryTabs");
+  tabs.innerHTML=Object.keys(moonRooms).map(k=>
+    `<button class="${k===active?"active":""}" onclick="showRoom('${k}')">${k}</button>`
+  ).join("");
+}
+function showRoom(room){
+  renderTabs(room); renderRoom(room);
+  const sec=document.getElementById("categoryRooms");
+  sec.classList.add("active");
+  sec.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function backToShop(){
+  document.getElementById("categoryRooms").classList.remove("active");
+  document.getElementById("shop")?.scrollIntoView({behavior:"smooth"});
+}
+function roomAddToCart(name,priceText){
+  const found=(typeof products!=="undefined")?products.find(p=>p.name===name):null;
+  if(found && typeof addToCart==="function"){ addToCart(found.id); return; }
+  if(typeof showToast==="function") showToast(`🛒 เพิ่ม ${name} แล้ว • ${priceText}`);
+  if(typeof moonConfetti==="function") moonConfetti();
+}
+
+/* Require a search before the main experience */
+window.addEventListener("load",()=>{
+  const gate=document.getElementById("searchGate");
+  const saved=localStorage.getItem("moonEntrySearch");
+  // Always show on first visit; on later visits, show a compact return gate only
+  if(saved){
+    document.getElementById("entrySearch").value=saved;
+    document.getElementById("entryNote").textContent=`ครั้งล่าสุดคุณค้นหา “${saved}” • พิมพ์ใหม่ได้เลย`;
+  }
+});
+
+
+
+/* =========================================================
+   V4 SMART FEATURES
+========================================================= */
+const moonSmart={who:null,budget:null,style:null};
+function smartChoose(btn,group,value){
+  moonSmart[group]=value;
+  document.querySelectorAll(`[data-group="${group}"] .choice`).forEach(x=>x.classList.remove('active'));
+  btn.classList.add('active');
+  smartRecommend();
+}
+function smartRecommend(){
+  if(!moonSmart.who||!moonSmart.budget||!moonSmart.style)return;
+  const budget=Number(moonSmart.budget);
+  const style=moonSmart.style;
+  let pool=(typeof products!=='undefined'?products:[]).filter(p=>p.price<=budget || budget>=800);
+  if(!pool.length) pool=(typeof products!=='undefined'?products:[]).slice();
+  const score=p=>{
+    let n=0;
+    if(style==='น่ารัก' && (p.style||[]).includes('cute')) n+=40;
+    if(style==='แฟชั่น' && (p.style||[]).includes('fashion')) n+=40;
+    if(style==='ใช้งานได้จริง' && (p.style||[]).includes('useful')) n+=40;
+    if(style==='มินิมอล' && !((p.style||[]).includes('cute'))) n+=18;
+    if(moonSmart.who==='แฟน' && /ของขวัญ|หัวใจ|love|หมี|gift/i.test(p.name+' '+p.category)) n+=25;
+    if(moonSmart.who==='เพื่อน' && /เครื่องเขียน|แก้ว|ของขวัญ/i.test(p.category+' '+p.name)) n+=15;
+    if(moonSmart.who==='ตัวเอง' && /แฟชั่น|แต่งห้อง|เครื่องเขียน/i.test(p.category)) n+=15;
+    if(moonSmart.who==='ครอบครัว' && /ของขวัญ|แก้ว|แต่งห้อง/i.test(p.category+' '+p.name)) n+=15;
+    n+=Math.max(0,10-Math.abs(budget-p.price)/50);
+    return n;
+  };
+  pool.sort((a,b)=>score(b)-score(a));
+  const picks=pool.slice(0,2);
+  const best=picks[0];
+  const result=document.getElementById('assistantResult');
+  if(!result||!best)return;
+  const match=Math.min(99,Math.max(78,Math.round(78+score(best)/1.7)));
+  result.innerHTML=`<div style="font-size:11px;font-weight:900">✨ เราคัดให้แล้วสำหรับ ${moonSmart.who}</div><div class="match-score">${match}% Match</div><div style="font-size:12px;font-weight:800">${best.name} • ฿${best.price.toLocaleString()}</div><div class="match-reasons"><span class="reason">💗 ${style}</span><span class="reason">💰 อยู่ในงบ</span><span class="reason">✨ คัดจากความเหมาะสม</span></div><div class="pick-grid">${picks.map(p=>`<div class="pick"><img src="${p.image}" alt="${p.name}"><strong>${p.name}</strong><small>฿${p.price.toLocaleString()} • ⭐ ${p.rating}</small><button class="room-btn" onclick="addToCart(${p.id})">เพิ่มลงตะกร้า</button></div>`).join('')}</div>`;
+  result.classList.add('show');
+}
+function smartSearch(e){
+  e.preventDefault();
+  const input=document.getElementById('smartSearchInput');
+  const text=input.value.trim();
+  const out=document.getElementById('smartSearchOutput');
+  if(!text){out.innerHTML='<div class="assistant-result show">✨ ลองพิมพ์สิ่งที่กำลังหา เช่น “ของขวัญให้แฟน งบ 500”</div>';return;}
+  const room=typeof chooseRoom==='function'?chooseRoom(text):'ของขวัญ';
+  const budgetMatch=text.match(/(?:฿|งบ\s*)?(\d{2,4})/);
+  const budget=budgetMatch?Number(budgetMatch[1]):null;
+  let pool=(typeof moonRooms!=='undefined'?(moonRooms[room]||[]):[]);
+  if(budget) pool=pool.filter(x=>Number(x[1].replace(/[^0-9]/g,''))<=budget);
+  pool=pool.slice(0,4);
+  out.innerHTML=`<div class="assistant-result show"><div style="font-size:11px;font-weight:900">🔎 ผลลัพธ์สำหรับ “${text.replace(/[<>]/g,'')}”</div><div style="margin-top:5px;font-size:13px"><b>${room}</b>${budget?' • ไม่เกิน ฿'+budget:''}</div><div class="pick-grid">${pool.length?pool.map(p=>`<div class="pick"><img src="${p[2]}" alt="${p[0]}" loading="lazy"><strong>${p[0]}</strong><small>${p[1]}</small><button class="room-btn" onclick="roomAddToCart('${p[0].replace(/'/g,"\\'")}','${p[1]}')">เพิ่มลงตะกร้า</button></div>`).join(''):'<div style="font-size:12px;color:var(--muted);grid-column:1/-1">ยังไม่เจอในงบนี้ ลองเพิ่มงบอีกนิดหรือเลือกหมวดใกล้เคียงดูนะ 💕</div>'}</div><button class="room-btn" onclick="showRoom('${room}')">ดูสินค้าทั้งหมวด →</button></div>`;
+}
+function updateShippingProgress(){
+  const bar=document.getElementById('shippingBar'),text=document.getElementById('shippingText'),note=document.getElementById('shippingNote');
+  if(!bar||typeof cart==='undefined')return;
+  let total=0;
+  try{total=cart.reduce((sum,item)=>{const p=getProduct(item.id);return sum+(p?p.price*item.qty:0)},0)}catch(e){}
+  const pct=Math.min(100,(total/799)*100);bar.style.width=pct+'%';
+  if(total<=0){text.textContent='เริ่มช้อปได้เลย';note.textContent='เพิ่มสินค้าในตะกร้า แล้วแถบนี้จะอัปเดตให้อัตโนมัติ';}
+  else if(total<799){text.textContent=`อีก ฿${(799-total).toLocaleString()} ก็ส่งฟรี 🎉`;note.textContent=`ตอนนี้ ฿${total.toLocaleString()} / ฿799`}
+  else{text.textContent='ส่งฟรีแล้ว 🎉';note.textContent=`ยอดสินค้า ฿${total.toLocaleString()} • คุณได้รับสิทธิ์ส่งฟรี`}
+}
+const oldRenderCart=window.renderCart;
+if(typeof oldRenderCart==='function'){
+  window.renderCart=function(){const r=oldRenderCart.apply(this,arguments);setTimeout(updateShippingProgress,0);return r;};
+}
+window.addEventListener('load',()=>setTimeout(updateShippingProgress,300));
 
 </script>
 
