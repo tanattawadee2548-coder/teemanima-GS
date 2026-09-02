@@ -1947,6 +1947,165 @@ body::selection{background:#ff4f91;color:#fff}
 .room-quick{border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 13px;cursor:pointer}
 .img-fallback{background:linear-gradient(135deg,#f8edf4,#eee8f5);display:flex;align-items:center;justify-content:center}
 .img-fallback::after{content:'🌙  MOON GIFT';font-weight:900;color:#817286;letter-spacing:1px}
+
+/* =========================================================
+   CUTE RECEIPT / ORDER SLIP
+========================================================= */
+.receipt-card{
+    width:min(560px,100%);
+    margin:8px auto 0;
+    background:var(--bg2);
+    border:1px solid rgba(216,27,96,.14);
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 25px 80px rgba(86,22,66,.18);
+    position:relative;
+}
+.receipt-head{
+    padding:26px 24px 22px;
+    text-align:center;
+    color:#fff;
+    background:
+      radial-gradient(circle at 20% 20%,rgba(255,255,255,.22),transparent 22%),
+      radial-gradient(circle at 85% 15%,rgba(255,224,130,.22),transparent 20%),
+      linear-gradient(135deg,#641044,#d81b60,#ff6f9e);
+    position:relative;
+}
+.receipt-head::after{
+    content:"✦  ✧  ✦  ✧  ✦";
+    position:absolute;
+    left:0;right:0;bottom:7px;
+    color:rgba(255,255,255,.35);
+    letter-spacing:10px;
+    font-size:11px;
+}
+.receipt-brand{
+    font-size:11px;
+    letter-spacing:3px;
+    opacity:.85;
+    font-weight:900;
+}
+.receipt-check{
+    width:66px;height:66px;margin:10px auto 8px;
+    display:grid;place-items:center;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
+    font-size:34px;
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+.receipt-head h2{margin:0;font-size:25px}
+.receipt-head p{margin:6px 0 0;color:rgba(255,255,255,.82);font-size:12px}
+.receipt-body{padding:22px}
+.receipt-meta{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    margin-bottom:18px;
+}
+.receipt-meta-box{
+    padding:12px;border-radius:15px;
+    background:var(--bg);
+    border:1px solid var(--line);
+}
+.receipt-meta-box span{
+    display:block;color:var(--muted);font-size:10px;margin-bottom:4px
+}
+.receipt-meta-box strong{font-size:12px;word-break:break-word}
+.receipt-items{
+    border:1px solid var(--line);
+    border-radius:17px;
+    overflow:hidden;
+    margin-bottom:15px;
+}
+.receipt-item{
+    display:grid;grid-template-columns:48px 1fr auto;
+    gap:10px;align-items:center;
+    padding:12px;
+    border-bottom:1px dashed var(--line);
+}
+.receipt-item:last-child{border-bottom:0}
+.receipt-thumb{
+    width:48px;height:48px;border-radius:12px;overflow:hidden;background:#fff0f6;
+}
+.receipt-thumb svg,.receipt-thumb img{width:100%;height:100%;display:block;object-fit:cover}
+.receipt-item-name{font-size:12px;font-weight:900}
+.receipt-item-sub{font-size:10px;color:var(--muted);margin-top:3px}
+.receipt-item-price{font-size:12px;font-weight:900;color:var(--primary);white-space:nowrap}
+.receipt-totals{
+    padding:14px 15px;border-radius:17px;background:rgba(216,27,96,.055);
+}
+.receipt-row{
+    display:flex;justify-content:space-between;gap:15px;
+    margin:7px 0;color:var(--muted);font-size:12px;
+}
+.receipt-row strong{color:var(--text)}
+.receipt-total{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-top:10px;padding-top:12px;border-top:1px dashed rgba(216,27,96,.22);
+    color:var(--primary);font-size:18px;font-weight:1000;
+}
+.receipt-note{
+    text-align:center;color:var(--muted);font-size:10px;
+    line-height:1.7;margin:15px 5px 0;
+}
+.receipt-actions{
+    display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:9px;margin-top:16px;
+}
+.receipt-actions button{
+    border:none;border-radius:13px;padding:12px;font-weight:900;
+}
+.receipt-print{background:linear-gradient(135deg,var(--primary),#8e24aa);color:#fff}
+.receipt-close{background:var(--bg);color:var(--text);border:1px solid var(--line)!important}
+.receipt-confetti{
+    position:absolute;inset:0;pointer-events:none;overflow:hidden
+}
+.receipt-confetti span{position:absolute;animation:receiptFall 2.6s ease-out forwards;opacity:0}
+.receipt-confetti span:nth-child(1){left:8%;top:5%;animation-delay:.1s}
+.receipt-confetti span:nth-child(2){left:22%;top:0%;animation-delay:.35s}
+.receipt-confetti span:nth-child(3){left:76%;top:4%;animation-delay:.2s}
+.receipt-confetti span:nth-child(4){left:90%;top:2%;animation-delay:.5s}
+.receipt-confetti span:nth-child(5){left:52%;top:0%;animation-delay:.7s}
+@keyframes receiptFall{
+    0%{transform:translateY(-20px) rotate(0);opacity:0}
+    15%{opacity:1}
+    100%{transform:translateY(125px) rotate(180deg);opacity:0}
+}
+/* Cute receipt polish + real image download */
+.receipt-card{isolation:isolate}
+.receipt-card::before,.receipt-card::after{content:"";position:absolute;z-index:5;pointer-events:none}
+.receipt-card::before{content:"🎀";top:12px;right:14px;font-size:24px;transform:rotate(12deg);filter:drop-shadow(0 4px 6px rgba(0,0,0,.12))}
+.receipt-card::after{content:"♥  ✦  ♥";left:0;right:0;bottom:0;height:10px;background:repeating-linear-gradient(90deg,#ffb6d2 0 18px,#ffe4ef 18px 36px);color:#d81b60;text-align:center;font-size:8px;line-height:10px;letter-spacing:7px}
+.receipt-head{overflow:hidden}
+.receipt-head::before{content:"☾  ✧  🌙  ✧  ☽";position:absolute;left:0;right:0;top:10px;text-align:center;color:rgba(255,255,255,.28);font-size:13px;letter-spacing:8px}
+.receipt-head h2{position:relative;z-index:2}
+.receipt-body{position:relative}
+.receipt-items{background:rgba(255,255,255,.55)}
+.receipt-meta-box{background:linear-gradient(135deg,rgba(255,240,247,.9),rgba(255,255,255,.9))}
+.receipt-total span:last-child{background:linear-gradient(135deg,#d81b60,#8e24aa);color:#fff;padding:7px 12px;border-radius:999px;box-shadow:0 7px 18px rgba(216,27,96,.18)}
+.receipt-actions button{transition:.2s}
+.receipt-actions button:hover{transform:translateY(-2px)}
+.receipt-download{background:linear-gradient(135deg,#ff4f91,#8e24aa);color:#fff;box-shadow:0 10px 24px rgba(216,27,96,.2)}
+.receipt-download.loading{opacity:.7;cursor:wait}
+@media print{
+  .receipt-card{box-shadow:none!important;border:0!important}
+  .receipt-card::before,.receipt-card::after{display:none!important}
+}
+
+@media(max-width:600px){
+    .receipt-body{padding:16px}
+    .receipt-meta{grid-template-columns:1fr}
+    .receipt-actions{grid-template-columns:1fr}
+}
+@media print{
+    body *{visibility:hidden!important}
+    #receiptPrintArea,#receiptPrintArea *{visibility:visible!important}
+    #receiptPrintArea{
+        position:absolute!important;left:0!important;top:0!important;width:100%!important;
+        display:block!important;background:#fff!important;
+    }
+    .receipt-actions{display:none!important}
+    .receipt-card{box-shadow:none!important;border:0!important;max-width:600px!important;margin:auto!important}
+}
+
 </style>
 
 <style id="moon-real-images">
@@ -2253,7 +2412,7 @@ body::selection{background:#ff4f91;color:#fff}
 
         <button
             class="category-card"
-            onclick="chooseCategory('ของตกแต่ง')">
+            onclick="chooseCategory('แต่งห้อง')">
 
             <div class="category-photo-wrap"><img class="category-photo" src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85" alt="หมวดสินค้า" loading="lazy"></div>
             <strong>ของตกแต่ง</strong>
@@ -3419,7 +3578,7 @@ facilities:["เบา","กันกระแทก","ดีไซน์หั�
 {
 id:6,
 name:"ต้นไม้จิ๋ว Lucky Plant",
-category:"ของตกแต่ง",
+category:"แต่งห้อง",
 price:129,
 oldPrice:149,
 rating:4.4,
@@ -3515,7 +3674,7 @@ facilities:["พร้อมใช้","ดีไซน์พิเศษ","ว�
 {
 id:12,
 name:"ที่ตั้งโต๊ะ Mini Garden",
-category:"ของตกแต่ง",
+category:"แต่งห้อง",
 price:179,
 oldPrice:219,
 rating:4.3,
@@ -3565,10 +3724,37 @@ facilities:["ขนนุ่ม","28 ซม.","นุ่มมาก"]
 
 /* REAL PRODUCT PHOTOS — every main product gets a real photo */
 const moonProductPhotos = ['https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1601593346740-925612772716?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1589884629108-3193400c7cc6?auto=format&fit=crop&w=900&q=85'];
+/* ===== FORCE REAL IMAGE FOR EVERY PRODUCT =====
+   ใช้รูปจาก Category Rooms เป็นคลังรูปหลัก เพื่อไม่ให้สินค้าใด
+   แสดงเป็นกล่องว่าง/ไม่มีรูป และมี fallback เป็นรูปหมวดที่โหลดได้
+*/
+const specificProductImages = {
+  "ตุ๊กตาหมีน้องมูน":"https://loremflickr.com/900/700/teddy,bear,plush?lock=101",
+  "เซ็ตปากกาพาสเทล 6 สี":"https://loremflickr.com/900/700/pastel,pens,stationery?lock=102",
+  "กระเป๋าสะพาย Mini Heart":"https://loremflickr.com/900/700/mini,shoulder,handbag?lock=103",
+  "แก้วน้ำ Smile Cup":"https://loremflickr.com/900/700/cute,mug,cup?lock=104",
+  "เคสมือถือ Sweet Heart":"https://loremflickr.com/900/700/heart,phone,case?lock=105",
+  "ต้นไม้จิ๋ว Lucky Plant":"https://loremflickr.com/900/700/mini,plant,pot?lock=106",
+  "ตุ๊กตากระต่าย Pink Bunny":"https://loremflickr.com/900/700/pink,bunny,rabbit,plush?lock=107",
+  "สมุดโน้ต Daily Mood":"https://loremflickr.com/900/700/notebook,journal,pastel?lock=108",
+  "พวงกุญแจ Heart Buddy":"https://loremflickr.com/900/700/heart,keychain?lock=109",
+  "กระเป๋าผ้า Moon Tote":"https://loremflickr.com/900/700/canvas,tote,bag?lock=110",
+  "กล่องของขวัญ Happy Box":"https://loremflickr.com/900/700/gift,box,present?lock=111",
+  "ที่ตั้งโต๊ะ Mini Garden":"https://loremflickr.com/900/700/mini,garden,desk?lock=112",
+  "เคสมือถือ Star Dream":"https://loremflickr.com/900/700/star,phone,case?lock=113",
+  "ตุ๊กตาแมว Mochi Cat":"https://loremflickr.com/900/700/cat,plush,toy?lock=114"
+};
+
+function productImageTag(p){
+  const url = specificProductImages[p.name];
+  const fallback = encodeURIComponent(productSVG("#f7d8e8","#eee3f4"));
+  return `<img src="${url || ''}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,${fallback}'">`;
+}
+
 products.forEach((p,i)=>{
-  const src = moonProductPhotos[i % moonProductPhotos.length];
-  p.image = `<img src="${src}" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<div class=\"image-fallback\">🌙</div>'">`;
+  p.image = productImageTag(p);
 });
+
 
 
 /* =========================================================
@@ -5030,7 +5216,6 @@ function placeOrder(){
             "paymentMethod"
         ).value;
 
-
     if(
         !name ||
         !phone ||
@@ -5045,17 +5230,58 @@ function placeOrder(){
         return;
     }
 
-
     const orderId =
         "MG-" +
         Date.now()
         .toString()
         .slice(-8);
 
+    const orderItems = cart.map(item => {
+        const product = getProduct(item.id);
+        return {
+            id: item.id,
+            name: product ? product.name : "สินค้า",
+            price: product ? product.price : 0,
+            qty: item.qty,
+            image: product ? product.image : ""
+        };
+    });
 
-    const total =
-        grandTotal();
+    const subtotal = cartSubtotal();
+    const discount = discountAmount();
+    const shipping = shippingAmount();
+    const total = grandTotal();
+    const orderDate = new Date();
 
+    const orderData = {
+        orderId,
+        name,
+        phone,
+        address,
+        payment,
+        items: orderItems,
+        subtotal,
+        discount,
+        shipping,
+        total,
+        date: orderDate.toLocaleString("th-TH", {
+            dateStyle:"medium",
+            timeStyle:"short"
+        })
+    };
+
+    /* เก็บประวัติออเดอร์ไว้ในเครื่อง */
+    try{
+        const history =
+            JSON.parse(
+                localStorage.getItem("moonOrders") || "[]"
+            );
+        history.unshift(orderData);
+        localStorage.setItem(
+            "moonOrders",
+            JSON.stringify(history.slice(0,20))
+        );
+    }catch(e){}
 
     document.getElementById(
         "step1"
@@ -5069,85 +5295,229 @@ function placeOrder(){
         "step3"
     ).classList.add("active");
 
-
     document.getElementById(
         "checkoutContent"
     ).innerHTML = `
+        <div id="receiptPrintArea">
 
-        <div class="success">
+            <div class="receipt-card">
 
-            <div class="success-icon">
-                🎉
+                <div class="receipt-head">
+                    <div class="receipt-confetti">
+                        <span>💗</span>
+                        <span>✦</span>
+                        <span>🎀</span>
+                        <span>✧</span>
+                        <span>💫</span>
+                    </div>
+
+                    <div class="receipt-brand">
+                        MOON GIFT SHOP
+                    </div>
+
+                    <div class="receipt-check">
+                        ✓
+                    </div>
+
+                    <h2>
+                        ซื้อสำเร็จแล้ว! 🎉
+                    </h2>
+
+                    <p>
+                        ขอบคุณที่เลือกของขวัญจาก MOON
+                    </p>
+                </div>
+
+                <div class="receipt-body">
+
+                    <div class="receipt-meta">
+
+                        <div class="receipt-meta-box">
+                            <span>เลขที่คำสั่งซื้อ</span>
+                            <strong>${orderId}</strong>
+                        </div>
+
+                        <div class="receipt-meta-box">
+                            <span>วันที่ทำรายการ</span>
+                            <strong>${orderData.date}</strong>
+                        </div>
+
+                        <div class="receipt-meta-box">
+                            <span>ชื่อลูกค้า</span>
+                            <strong>${escapeHtmlReceipt(name)}</strong>
+                        </div>
+
+                        <div class="receipt-meta-box">
+                            <span>การชำระเงิน</span>
+                            <strong>${escapeHtmlReceipt(payment)}</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="receipt-items">
+
+                        ${
+                            orderItems.map(item => `
+                                <div class="receipt-item">
+
+                                    <div class="receipt-thumb">
+                                        ${item.image}
+                                    </div>
+
+                                    <div>
+                                        <div class="receipt-item-name">
+                                            ${escapeHtmlReceipt(item.name)}
+                                        </div>
+                                        <div class="receipt-item-sub">
+                                            ${money(item.price)} × ${item.qty} ชิ้น
+                                        </div>
+                                    </div>
+
+                                    <div class="receipt-item-price">
+                                        ${money(item.price * item.qty)}
+                                    </div>
+
+                                </div>
+                            `).join("")
+                        }
+
+                    </div>
+
+                    <div class="receipt-totals">
+
+                        <div class="receipt-row">
+                            <span>ยอดสินค้า</span>
+                            <strong>${money(subtotal)}</strong>
+                        </div>
+
+                        <div class="receipt-row">
+                            <span>ส่วนลด</span>
+                            <strong>-${money(discount)}</strong>
+                        </div>
+
+                        <div class="receipt-row">
+                            <span>ค่าจัดส่ง</span>
+                            <strong>${money(shipping)}</strong>
+                        </div>
+
+                        <div class="receipt-total">
+                            <span>ยอดชำระสุทธิ</span>
+                            <span>${money(total)}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="receipt-note">
+                        💕 ขอบคุณสำหรับคำสั่งซื้อของคุณ<br>
+                        นี่เป็นสลิปคำสั่งซื้อสำหรับระบบสาธิต
+                        ยังไม่มีการเรียกเก็บเงินจริง
+                    </div>
+
+                    <div class="receipt-actions">
+
+                        <button
+                            class="receipt-download"
+                            id="receiptDownloadBtn"
+                            onclick="downloadReceipt()">
+                            💾 ดาวน์โหลดสลิป PNG
+                        </button>
+
+                        <button
+                            class="receipt-print"
+                            onclick="printReceipt()">
+                            🖨️ พิมพ์สลิป
+                        </button>
+
+                        <button
+                            class="receipt-close"
+                            onclick="finishOrder()">
+                            🌙 กลับไปช้อปต่อ
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
-
-            <h2 style="
-                color:var(--primary);
-                margin:10px 0;
-            ">
-                Order Complete!
-            </h2>
-
-            <p style="
-                color:var(--muted);
-                line-height:1.8;
-            ">
-                ขอบคุณคุณ ${name}
-                ที่เลือก MOON GIFT SHOP
-            </p>
-
-            <div style="
-                margin:20px 0;
-                padding:18px;
-                border-radius:15px;
-                background:var(--bg);
-            ">
-
-                <strong>
-                    Order #${orderId}
-                </strong>
-
-                <br><br>
-
-                ยอดชำระ
-                <strong style="
-                    color:var(--primary);
-                    font-size:22px;
-                ">
-                    ${money(total)}
-                </strong>
-
-            </div>
-
-            <p style="
-                color:var(--muted);
-                font-size:11px;
-            ">
-                นี่เป็นระบบสาธิตสำหรับโปรเจกต์
-                ยังไม่มีการเรียกเก็บเงินจริง
-            </p>
-
-            <button
-                class="btn btn-main"
-                style="margin-top:20px"
-                onclick="
-                    finishOrder();
-                ">
-                🌙 กลับไปช้อปต่อ
-            </button>
 
         </div>
     `;
 
-
+    /* เคลียร์ตะกร้าหลังสร้างสลิป */
     cart = [];
-
     coupon = null;
 
     saveState();
     updateCounts();
     renderCart();
+
+    showToast(
+        "🎉 สั่งซื้อสำเร็จ! สลิปของคุณพร้อมแล้ว"
+    );
 }
 
+function escapeHtmlReceipt(value){
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+async function downloadReceipt(){
+    const area = document.getElementById("receiptPrintArea");
+    const btn = document.getElementById("receiptDownloadBtn");
+    if(!area){ showToast("❌ ไม่พบสลิปสำหรับดาวน์โหลด"); return; }
+
+    try{
+        btn?.classList.add("loading");
+        if(btn) btn.textContent = "⏳ กำลังสร้างสลิป...";
+
+        // Load html2canvas only when the user actually downloads.
+        if(!window.html2canvas){
+            await new Promise((resolve,reject)=>{
+                const script=document.createElement("script");
+                script.src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+                script.onload=resolve;
+                script.onerror=reject;
+                document.head.appendChild(script);
+            });
+        }
+
+        const canvas = await html2canvas(area,{
+            scale: 2,
+            useCORS: true,
+            backgroundColor: "#fff8fc",
+            logging: false,
+            imageTimeout: 12000
+        });
+
+        const blob = await new Promise(resolve=>canvas.toBlob(resolve,"image/png",1));
+        if(!blob) throw new Error("สร้างไฟล์ภาพไม่สำเร็จ");
+
+        const orderNo = (document.querySelector(".receipt-meta-box strong")?.textContent || "MOON-RECEIPT").trim();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${orderNo.replace(/[^a-zA-Z0-9_-]/g,"_")}.png`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(()=>URL.revokeObjectURL(url),1000);
+        showToast("💗 ดาวน์โหลดสลิปเรียบร้อยแล้ว!");
+    }catch(error){
+        console.error("Receipt download error:",error);
+        showToast("⚠️ ดาวน์โหลดไม่สำเร็จ ลองกดอีกครั้งหรือใช้ปุ่มพิมพ์สลิป");
+    }finally{
+        btn?.classList.remove("loading");
+        if(btn) btn.textContent = "💾 ดาวน์โหลดสลิป PNG";
+    }
+}
+
+function printReceipt(){
+    window.print();
+}
 
 function finishOrder(){
 
@@ -5163,6 +5533,7 @@ function finishOrder(){
         "🌙 ขอบคุณที่ช้อปกับ MOON!"
     );
 }
+
 
 
 /* =========================================================
@@ -5516,44 +5887,44 @@ document
 /* ===== V2 SEARCH GATE / CATEGORY ROOMS ===== */
 const moonRooms = {
   "ของขวัญ":[
-    ["Moon Bear","฿390","https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=900&q=85"],
-    ["Pastel Gift Box","฿249","https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=900&q=85"],
-    ["Cloud Mug","฿220","https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=900&q=85"],
-    ["Mini Flower Box","฿299","https://images.unsplash.com/photo-1455582916367-25f75bfc6710?auto=format&fit=crop&w=900&q=85"],
-    ["Love Gift Set","฿459","https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=900&q=85"],
-    ["Surprise Bag","฿329","https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85"]
+    ["Moon Bear","฿390","https://loremflickr.com/900/700/teddy,bear,plush?lock=201"],
+    ["Pastel Gift Box","฿249","https://loremflickr.com/900/700/pastel,gift,box?lock=202"],
+    ["Cloud Mug","฿220","https://loremflickr.com/900/700/cloud,cute,mug?lock=203"],
+    ["Mini Flower Box","฿299","https://loremflickr.com/900/700/flower,gift,box?lock=204"],
+    ["Love Gift Set","฿459","https://loremflickr.com/900/700/love,gift,set?lock=205"],
+    ["Surprise Bag","฿329","https://loremflickr.com/900/700/gift,surprise,bag?lock=206"]
   ],
   "เครื่องเขียน":[
-    ["Dreamy Notebook","฿159","https://images.unsplash.com/photo-1531346680769-a1d79b57de5c?auto=format&fit=crop&w=900&q=85"],
-    ["Cute Sticker Set","฿89","https://images.unsplash.com/photo-1589884629108-3193400c7cc6?auto=format&fit=crop&w=900&q=85"],
-    ["Pastel Pen Set","฿119","https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=85"],
-    ["Pink Planner","฿199","https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=85"],
-    ["Moon Memo Pad","฿79","https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=900&q=85"],
-    ["Study Pouch","฿179","https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=900&q=85"]
+    ["Dreamy Notebook","฿159","https://loremflickr.com/900/700/cute,notebook,journal?lock=207"],
+    ["Cute Sticker Set","฿89","https://loremflickr.com/900/700/cute,stickers,stationery?lock=208"],
+    ["Pastel Pen Set","฿119","https://loremflickr.com/900/700/pastel,pens?lock=209"],
+    ["Pink Planner","฿199","https://loremflickr.com/900/700/pink,planner,notebook?lock=210"],
+    ["Moon Memo Pad","฿79","https://loremflickr.com/900/700/memo,pad,stationery?lock=211"],
+    ["Study Pouch","฿179","https://loremflickr.com/900/700/stationery,pouch?lock=212"]
   ],
   "แฟชั่น":[
-    ["Mini Shoulder Bag","฿590","https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=900&q=85"],
-    ["Moon Hair Clip","฿129","https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85"],
-    ["Soft Knit Bag","฿490","https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=85"],
-    ["Pearl Hair Bow","฿149","https://images.unsplash.com/photo-1523268755815-fe7c372a0349?auto=format&fit=crop&w=900&q=85"],
-    ["Korean Tote","฿550","https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85"],
-    ["Daily Cap","฿259","https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85"]
+    ["Mini Shoulder Bag","฿590","https://loremflickr.com/900/700/mini,shoulder,bag?lock=213"],
+    ["Moon Hair Clip","฿129","https://loremflickr.com/900/700/moon,hair,clip?lock=214"],
+    ["Soft Knit Bag","฿490","https://loremflickr.com/900/700/knit,bag?lock=215"],
+    ["Pearl Hair Bow","฿149","https://loremflickr.com/900/700/pearl,hair,bow?lock=216"],
+    ["Korean Tote","฿550","https://loremflickr.com/900/700/korean,tote,bag?lock=217"],
+    ["Daily Cap","฿259","https://loremflickr.com/900/700/cap,fashion?lock=218"]
   ],
   "แต่งห้อง":[
-    ["Cloud Lamp","฿690","https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=85"],
-    ["Cute Cushion","฿329","https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=85"],
-    ["Moon Candle","฿189","https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=85"],
-    ["Desk Mirror","฿279","https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85"],
-    ["Mini Vase","฿159","https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85"],
-    ["Star Projector","฿799","https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=900&q=85"]
+    ["Cloud Lamp","฿690","https://loremflickr.com/900/700/cloud,lamp,room?lock=219"],
+    ["Cute Cushion","฿329","https://loremflickr.com/900/700/cute,cushion,pillow?lock=220"],
+    ["Moon Candle","฿189","https://loremflickr.com/900/700/moon,candle?lock=221"],
+    ["Desk Mirror","฿279","https://loremflickr.com/900/700/desk,mirror?lock=222"],
+    ["Mini Vase","฿159","https://loremflickr.com/900/700/mini,vase,flowers?lock=223"],
+    ["Star Projector","฿799","https://loremflickr.com/900/700/star,projector,room?lock=224"]
   ],
   "อุปกรณ์มือถือ":[
-    ["Moon Phone Case","฿199","https://images.unsplash.com/photo-1601593346740-925612772716?auto=format&fit=crop&w=900&q=85"],
-    ["Pastel Phone Charm","฿99","https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=900&q=85"],
-    ["Cute AirPods Case","฿229","https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=900&q=85"],
-    ["Phone Stand","฿159","https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85"],
-    ["Mini Power Bank","฿399","https://images.unsplash.com/photo-1609592424363-7c5c1b7b6d3b?auto=format&fit=crop&w=900&q=85"],
-    ["Cable Protector Set","฿79","https://images.unsplash.com/photo-1551721434-8b94ddc6d38a?auto=format&fit=crop&w=900&q=85"]
+    ["Moon Phone Case","฿199","https://loremflickr.com/900/700/moon,phone,case?lock=225"],
+    ["Pastel Phone Charm","฿99","https://loremflickr.com/900/700/pastel,phone,charm?lock=226"],
+    ["Cute AirPods Case","฿229","https://loremflickr.com/900/700/cute,airpods,case?lock=227"],
+    ["Phone Stand","฿159","https://loremflickr.com/900/700/phone,stand,desk?lock=228"],
+    ["Mini Power Bank","฿399","https://loremflickr.com/900/700/power,bank,phone?lock=229"],
+    ["Cable Protector Set","฿79","https://loremflickr.com/900/700/cable,protector,phone?lock=230"]
   ]
 };
 
