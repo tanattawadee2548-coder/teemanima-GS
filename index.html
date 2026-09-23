@@ -2124,9 +2124,93 @@ body::selection{background:#ff4f91;color:#fff}
 .image-fallback { display:flex; align-items:center; justify-content:center; height:100%; min-height:220px; background:linear-gradient(135deg,#fff7fb,#eee9f8); font-size:64px; }
 </style>
 
+<style>
+/* ===== ACCOUNT / PARCEL / CHAT / DASHBOARD MODULE ===== */
+#accountGate{position:fixed;inset:0;z-index:110000;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#8b1760,#26091f 48%,#07040a);color:#fff;padding:20px}
+#accountGate.hide{display:none}
+.account-card{width:min(480px,100%);background:rgba(20,8,22,.86);border:1px solid #ffffff25;border-radius:28px;padding:30px;box-shadow:0 30px 100px #0009;backdrop-filter:blur(22px)}
+.account-card h1{text-align:center;margin-bottom:6px}
+.account-card .sub{text-align:center;color:#ffd8eb;margin-bottom:22px;font-size:13px}
+.role-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:15px}
+.role-tabs button,.account-card input,.account-card select{border:1px solid #ffffff20;background:#ffffff0d;color:#fff;border-radius:12px;padding:12px}
+.role-tabs button.active{background:linear-gradient(135deg,#ff4f91,#a72c7d);border-color:transparent}
+.account-card input,.account-card select{width:100%;margin-bottom:10px;outline:none}
+.account-card select option{color:#222}
+.auth-submit{width:100%;border:0;padding:13px;border-radius:13px;background:linear-gradient(135deg,#ffd166,#ff4f91);font-weight:900;cursor:pointer}
+.demo-note{margin-top:14px;padding:12px;border-radius:13px;background:#ffffff0a;color:#ffd8eb;font-size:11px;line-height:1.7}
+.user-panel{position:fixed;right:18px;bottom:18px;z-index:9000;display:flex;gap:7px;align-items:center;flex-wrap:wrap;max-width:calc(100% - 36px)}
+.user-panel button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:12px;padding:10px 12px;font-weight:800;box-shadow:var(--shadow2)}
+.user-chip{padding:9px 12px;border-radius:12px;background:linear-gradient(135deg,var(--primary),#8e24aa);color:#fff;font-size:12px;font-weight:900}
+.badge-dot{position:relative}
+.badge-dot b{position:absolute;top:-6px;right:-6px;background:#ff1744;color:#fff;border-radius:99px;font-size:9px;min-width:18px;height:18px;display:grid;place-items:center}
+.sys-modal{position:fixed;inset:0;z-index:105000;display:none;place-items:center;background:#0009;padding:16px}
+.sys-modal.show{display:grid}
+.sys-card{width:min(1050px,100%);max-height:92vh;overflow:auto;background:var(--bg2);color:var(--text);border-radius:25px;box-shadow:0 30px 100px #0008}
+.sys-head{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg2);z-index:2}
+.sys-head button{border:0;background:var(--bg);color:var(--text);border-radius:50%;width:38px;height:38px}
+.sys-body{padding:22px}
+.sys-tabs{display:flex;gap:8px;overflow:auto;margin-bottom:18px}
+.sys-tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--text);padding:10px 14px;border-radius:12px;font-weight:800}
+.sys-tabs button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.stat-box{padding:18px;border:1px solid var(--line);background:var(--card);border-radius:18px}
+.stat-box span{color:var(--muted);font-size:11px}.stat-box strong{display:block;font-size:26px;color:var(--primary);margin-top:5px}
+.sys-table{width:100%;border-collapse:collapse;font-size:12px}.sys-table th,.sys-table td{padding:11px 8px;border-bottom:1px solid var(--line);text-align:left}.status{padding:5px 9px;border-radius:99px;background:rgba(216,27,96,.1);color:var(--primary);font-weight:800}
+.notify-item,.chat-msg{padding:12px;border:1px solid var(--line);border-radius:14px;margin-bottom:9px;background:var(--card)}
+.notify-item.important{border-color:#ff4f9166}
+.chat-layout{display:grid;grid-template-columns:250px 1fr;gap:14px;min-height:500px}.chat-users{border:1px solid var(--line);border-radius:18px;padding:10px}.chat-user{padding:12px;border-radius:12px;cursor:pointer}.chat-user.active{background:rgba(216,27,96,.1);color:var(--primary);font-weight:900}.chat-box{border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;min-width:0}.chat-history{flex:1;overflow:auto;padding:14px;min-height:300px}.chat-msg.me{margin-left:auto;background:linear-gradient(135deg,var(--primary),#8e24aa);color:#fff;max-width:75%}.chat-msg.admin{max-width:75%}.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}.chat-input input{flex:1;min-width:0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text)}.chat-input button{border:0;border-radius:12px;padding:0 16px;background:var(--primary);color:#fff;font-weight:900}
+@media(max-width:700px){.stats-grid{grid-template-columns:1fr 1fr}.chat-layout{grid-template-columns:1fr}.chat-users{max-height:150px;overflow:auto}.sys-table{font-size:10px}.user-panel{bottom:70px}}
+</style>
 </head>
 
 <body>
+
+<!-- ===== ACCOUNT GATE ===== -->
+<div id="accountGate">
+  <div class="account-card">
+    <div style="text-align:center;font-size:55px">🌙</div>
+    <h1>เข้าสู่ระบบ MOON GIFT SHOP</h1>
+    <div class="sub">เลือกบทบาทเพื่อเข้าสู่ระบบ</div>
+    <div class="role-tabs">
+      <button id="roleCustomer" class="active" onclick="selectRole('customer')">👤 ลูกค้า</button>
+      <button id="roleAdmin" onclick="selectRole('admin')">🛠️ แอดมิน</button>
+    </div>
+    <input id="loginUser" placeholder="ชื่อผู้ใช้">
+    <input id="loginPass" type="password" placeholder="รหัสผ่าน">
+    <button class="auth-submit" onclick="doLogin()">เข้าสู่ระบบ</button>
+    <div id="loginError" style="color:#ff9ebf;font-size:12px;text-align:center;margin-top:10px"></div>
+    <div class="demo-note">
+      บัญชีทดลองใช้งาน:<br>
+      👤 ลูกค้า: <b>customer</b> / <b>1234</b><br>
+      🛠️ แอดมิน: <b>admin</b> / <b>admin123</b>
+    </div>
+  </div>
+</div>
+
+<div class="user-panel" id="userPanel" style="display:none">
+  <span class="user-chip" id="userChip">ผู้ใช้</span>
+  <button onclick="openSystem('dashboard')">📊 แดชบอร์ด</button>
+  <button onclick="openSystem('parcels')">📦 พัสดุ</button>
+  <button class="badge-dot" onclick="openSystem('notifications')">🔔 แจ้งเตือน <b id="notifyBadge">0</b></button>
+  <button onclick="openSystem('chat')">💬 แชท</button>
+  <button onclick="logout()">ออกจากระบบ</button>
+</div>
+
+<div class="sys-modal" id="systemModal">
+  <div class="sys-card">
+    <div class="sys-head"><strong id="sysTitle">ระบบจัดการ</strong><button onclick="closeSystem()">✕</button></div>
+    <div class="sys-body">
+      <div class="sys-tabs">
+        <button data-tab="dashboard" onclick="openSystem('dashboard')">📊 แดชบอร์ด</button>
+        <button data-tab="parcels" onclick="openSystem('parcels')">📦 ข้อมูลพัสดุ</button>
+        <button data-tab="notifications" onclick="openSystem('notifications')">🔔 แจ้งเตือน</button>
+        <button data-tab="chat" onclick="openSystem('chat')">💬 แชท</button>
+      </div>
+      <div id="systemContent"></div>
+    </div>
+  </div>
+</div>
+
 
 <!-- WOW PRESENTATION LAYER -->
 
@@ -6075,5 +6159,176 @@ document.addEventListener('error',function(e){
   }
 },true);
 </script>
+
+<script>
+/* ===== MOON SYSTEM: 2 ROLES + CHAT + PARCELS + NOTIFICATIONS + DASHBOARD ===== */
+const MOON_USERS = {
+  customer:{username:"customer",password:"1234",name:"ลูกค้า",role:"customer"},
+  admin:{username:"admin",password:"admin123",name:"ผู้ดูแลระบบ",role:"admin"}
+};
+const defaultParcels = [
+ {id:"MG20260923001",customer:"customer",name:"คุณลูกค้า",items:"Moon Bear × 1, Cloud Mug × 1",total:610,status:"กำลังเตรียมสินค้า",carrier:"Flash Express",tracking:"TH123456789",date:"23/09/2026"},
+ {id:"MG20260922008",customer:"customer",name:"คุณลูกค้า",items:"Dreamy Notebook × 1",total:159,status:"จัดส่งแล้ว",carrier:"Kerry",tracking:"TH987654321",date:"22/09/2026"},
+ {id:"MG20260921003",customer:"customer",name:"คุณลูกค้า",items:"Moon Phone Case × 1",total:199,status:"ถึงปลายทาง",carrier:"J&T Express",tracking:"TH555666777",date:"21/09/2026"}
+];
+const defaultNotifications = [
+ {id:1,role:"all",title:"ระบบแจ้งเตือนสำคัญ",text:"ตรวจสอบสถานะพัสดุของคุณได้จากเมนู 📦 ข้อมูลพัสดุ",time:"วันนี้",important:true},
+ {id:2,role:"customer",title:"มีการอัปเดตพัสดุ",text:"พัสดุ MG20260922008 ถูกจัดส่งแล้ว",time:"วันนี้",important:true},
+ {id:3,role:"admin",title:"มีคำสั่งซื้อใหม่",text:"มีรายการคำสั่งซื้อใหม่รอตรวจสอบ",time:"วันนี้",important:true}
+];
+let moonSession = JSON.parse(localStorage.getItem("moonSession")||"null");
+let moonParcels = JSON.parse(localStorage.getItem("moonParcels")||"null") || defaultParcels;
+let moonNotifications = JSON.parse(localStorage.getItem("moonNotifications")||"null") || defaultNotifications;
+let moonChats = JSON.parse(localStorage.getItem("moonChats")||"null") || {
+ customer:[
+   {from:"admin",text:"สวัสดีค่ะ 🌙 หากต้องการสอบถามเรื่องคำสั่งซื้อหรือพัสดุ ทักมาได้เลยนะคะ",time:"10:00"}
+ ],
+ admin:[
+   {from:"customer",text:"สวัสดีค่ะ ขอสอบถามสถานะพัสดุหน่อยค่ะ",time:"10:01"}
+ ]
+};
+
+function persistMoonSystem(){
+  localStorage.setItem("moonParcels",JSON.stringify(moonParcels));
+  localStorage.setItem("moonNotifications",JSON.stringify(moonNotifications));
+  localStorage.setItem("moonChats",JSON.stringify(moonChats));
+}
+function selectRole(role){
+  document.getElementById("roleCustomer").classList.toggle("active",role==="customer");
+  document.getElementById("roleAdmin").classList.toggle("active",role==="admin");
+  document.getElementById("loginUser").value=role==="admin"?"admin":"customer";
+  document.getElementById("loginPass").value=role==="admin"?"admin123":"1234";
+}
+function doLogin(){
+  const username=document.getElementById("loginUser").value.trim();
+  const password=document.getElementById("loginPass").value;
+  const user=Object.values(MOON_USERS).find(x=>x.username===username && x.password===password);
+  if(!user){
+    document.getElementById("loginError").textContent="ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+    return;
+  }
+  moonSession=user;
+  localStorage.setItem("moonSession",JSON.stringify(user));
+  document.getElementById("accountGate").classList.add("hide");
+  document.getElementById("userPanel").style.display="flex";
+  document.getElementById("userChip").textContent=(user.role==="admin"?"🛠️ ":"👤 ")+user.name;
+  updateMoonNotificationBadge();
+  if(typeof showToast==="function") showToast("เข้าสู่ระบบสำเร็จ • "+user.name);
+}
+function logout(){
+  moonSession=null;
+  localStorage.removeItem("moonSession");
+  closeSystem();
+  document.getElementById("userPanel").style.display="none";
+  document.getElementById("accountGate").classList.remove("hide");
+  selectRole("customer");
+}
+function updateMoonNotificationBadge(){
+  if(!moonSession)return;
+  const n=moonNotifications.filter(x=>(x.role==="all"||x.role===moonSession.role)&&x.important).length;
+  document.getElementById("notifyBadge").textContent=n;
+}
+function openSystem(tab){
+  if(!moonSession)return;
+  document.getElementById("systemModal").classList.add("show");
+  document.querySelectorAll(".sys-tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
+  const titles={dashboard:"📊 แดชบอร์ดสรุปงาน",parcels:"📦 ข้อมูลพัสดุ",notifications:"🔔 การแจ้งเตือนสำคัญ",chat:"💬 ศูนย์สนทนา"};
+  document.getElementById("sysTitle").textContent=titles[tab];
+  if(tab==="dashboard") renderDashboard();
+  if(tab==="parcels") renderParcels();
+  if(tab==="notifications") renderNotifications();
+  if(tab==="chat") renderChat();
+}
+function closeSystem(){document.getElementById("systemModal").classList.remove("show")}
+function visibleParcels(){
+  return moonSession.role==="admin"?moonParcels:moonParcels.filter(p=>p.customer===moonSession.username);
+}
+function renderDashboard(){
+  const list=visibleParcels();
+  const total=list.reduce((a,b)=>a+b.total,0);
+  const preparing=list.filter(p=>p.status==="กำลังเตรียมสินค้า").length;
+  const shipping=list.filter(p=>p.status==="จัดส่งแล้ว").length;
+  const delivered=list.filter(p=>p.status==="ถึงปลายทาง").length;
+  document.getElementById("systemContent").innerHTML=`
+    <div class="stats-grid">
+      <div class="stat-box"><span>${moonSession.role==="admin"?"พัสดุทั้งหมด":"พัสดุของฉัน"}</span><strong>${list.length}</strong></div>
+      <div class="stat-box"><span>กำลังเตรียม</span><strong>${preparing}</strong></div>
+      <div class="stat-box"><span>จัดส่งแล้ว</span><strong>${shipping}</strong></div>
+      <div class="stat-box"><span>ยอดรวม</span><strong>฿${total.toLocaleString()}</strong></div>
+    </div>
+    ${moonSession.role==="admin"?`
+      <div class="feature" style="margin-top:10px">
+        <h3>📌 งานที่ต้องจัดการ</h3>
+        <p style="color:var(--muted);margin-top:8px">มีพัสดุ ${preparing} รายการรอเตรียมสินค้า และมีแชทลูกค้าที่สามารถตอบกลับได้ทันที</p>
+        <button class="btn" style="margin-top:14px;background:var(--primary);color:#fff" onclick="openSystem('parcels')">จัดการพัสดุ</button>
+      </div>`:
+      `<div class="feature" style="margin-top:10px"><h3>🌙 สรุปการสั่งซื้อ</h3><p style="color:var(--muted);margin-top:8px">ตรวจสอบรายการพัสดุ สถานะการจัดส่ง และติดต่อแอดมินได้จากเมนูด้านบน</p></div>`}
+  `;
+}
+function renderParcels(){
+  const list=visibleParcels();
+  document.getElementById("systemContent").innerHTML=`
+    <div style="overflow:auto"><table class="sys-table">
+      <thead><tr><th>เลขพัสดุ</th><th>รายการ</th><th>ยอด</th><th>ขนส่ง</th><th>Tracking</th><th>สถานะ</th>${moonSession.role==="admin"?"<th>จัดการ</th>":""}</tr></thead>
+      <tbody>${list.map(p=>`<tr>
+        <td><b>${p.id}</b><br><small>${p.date}</small></td>
+        <td>${p.items}</td><td>฿${p.total.toLocaleString()}</td><td>${p.carrier}</td><td>${p.tracking}</td>
+        <td><span class="status">${p.status}</span></td>
+        ${moonSession.role==="admin"?`<td><select onchange="updateParcel('${p.id}',this.value)" style="padding:7px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text)">
+          ${["กำลังเตรียมสินค้า","จัดส่งแล้ว","ถึงปลายทาง"].map(x=>`<option ${x===p.status?"selected":""}>${x}</option>`).join("")}</select></td>`:""}
+      </tr>`).join("")}</tbody>
+    </table></div>
+  `;
+}
+function updateParcel(id,status){
+  const p=moonParcels.find(x=>x.id===id); if(!p)return;
+  p.status=status;
+  moonNotifications.unshift({id:Date.now(),role:"customer",title:"อัปเดตสถานะพัสดุ",text:`${id} เปลี่ยนสถานะเป็น “${status}”`,time:"เมื่อสักครู่",important:true});
+  persistMoonSystem(); updateMoonNotificationBadge(); renderParcels();
+}
+function renderNotifications(){
+  const list=moonNotifications.filter(x=>x.role==="all"||x.role===moonSession.role);
+  document.getElementById("systemContent").innerHTML=list.length?list.map(n=>`
+    <div class="notify-item ${n.important?"important":""}">
+      <b>${n.important?"🚨 ":""}${n.title}</b><div style="margin:5px 0;color:var(--muted)">${n.text}</div><small>${n.time}</small>
+    </div>`).join(""):`<div class="notify-item">ไม่มีการแจ้งเตือน</div>`;
+}
+function renderChat(){
+  const partner=moonSession.role==="admin"?"customer":"admin";
+  const history=moonChats[moonSession.role==="admin"?"admin":"customer"]||[];
+  document.getElementById("systemContent").innerHTML=`
+    <div class="chat-layout">
+      <div class="chat-users"><div style="padding:10px;font-size:12px;color:var(--muted)">คู่สนทนา</div><div class="chat-user active">💬 ${partner==="admin"?"แอดมิน":"ลูกค้า"}</div></div>
+      <div class="chat-box"><div class="chat-history" id="chatHistory">
+        ${history.map(m=>`<div class="chat-msg ${m.from===moonSession.role?"me":"admin"}"><b>${m.from===moonSession.role?"คุณ":(m.from==="admin"?"แอดมิน":"ลูกค้า")}</b><div>${escapeMoon(m.text)}</div><small style="opacity:.65">${m.time}</small></div>`).join("")}
+      </div>
+      <div class="chat-input"><input id="chatInput" placeholder="พิมพ์ข้อความถึง${partner==="admin"?"แอดมิน":"ลูกค้า"}..." onkeydown="if(event.key==='Enter')sendMoonChat()"><button onclick="sendMoonChat()">ส่ง</button></div></div>
+    </div>`;
+  setTimeout(()=>{const h=document.getElementById("chatHistory");if(h)h.scrollTop=h.scrollHeight},0);
+}
+function escapeMoon(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function sendMoonChat(){
+  const input=document.getElementById("chatInput"); if(!input||!input.value.trim())return;
+  const key=moonSession.role==="admin"?"admin":"customer";
+  moonChats[key]=moonChats[key]||[];
+  moonChats[key].push({from:moonSession.role,text:input.value.trim(),time:new Date().toLocaleTimeString("th-TH",{hour:"2-digit",minute:"2-digit"})});
+  if(moonSession.role==="customer"){
+    moonChats.customer.push({from:"admin",text:"ได้รับข้อความแล้วค่ะ แอดมินจะตรวจสอบและตอบกลับโดยเร็วที่สุด 💖",time:"เมื่อสักครู่"});
+    moonNotifications.unshift({id:Date.now(),role:"admin",title:"ข้อความใหม่จากลูกค้า",text:input.value.trim(),time:"เมื่อสักครู่",important:true});
+  }else{
+    moonChats.admin.push({from:"customer",text:"ได้รับข้อความจากแอดมินแล้วค่ะ ขอบคุณนะคะ 💖",time:"เมื่อสักครู่"});
+  }
+  persistMoonSystem(); input.value=""; renderChat(); updateMoonNotificationBadge();
+}
+window.addEventListener("DOMContentLoaded",()=>{
+  if(moonSession){
+    document.getElementById("accountGate").classList.add("hide");
+    document.getElementById("userPanel").style.display="flex";
+    document.getElementById("userChip").textContent=(moonSession.role==="admin"?"🛠️ ":"👤 ")+moonSession.name;
+    updateMoonNotificationBadge();
+  }else selectRole("customer");
+});
+</script>
+
 </body>
 </html>
