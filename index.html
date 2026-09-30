@@ -2160,10 +2160,20 @@ body::selection{background:#ff4f91;color:#fff}
 .notify-item.important{border-color:#ff4f9166}
 .chat-layout{display:grid;grid-template-columns:250px 1fr;gap:14px;min-height:500px}.chat-users{border:1px solid var(--line);border-radius:18px;padding:10px}.chat-user{padding:12px;border-radius:12px;cursor:pointer}.chat-user.active{background:rgba(216,27,96,.1);color:var(--primary);font-weight:900}.chat-box{border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;min-width:0}.chat-history{flex:1;overflow:auto;padding:14px;min-height:300px}.chat-msg.me{margin-left:auto;background:linear-gradient(135deg,var(--primary),#8e24aa);color:#fff;max-width:75%}.chat-msg.admin{max-width:75%}.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}.chat-input input{flex:1;min-width:0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text)}.chat-input button{border:0;border-radius:12px;padding:0 16px;background:var(--primary);color:#fff;font-weight:900}
 @media(max-width:700px){.stats-grid{grid-template-columns:1fr 1fr}.chat-layout{grid-template-columns:1fr}.chat-users{max-height:150px;overflow:auto}.sys-table{font-size:10px}.user-panel{bottom:70px}}
+
+
+/* MOON set contents in product detail */
+.moon-included{margin:16px 0;padding:14px 16px;border:1px solid var(--line,#eadce9);border-radius:14px;background:rgba(250,239,248,.72)}
+.moon-included h3{font-size:15px;margin:0 0 10px;color:var(--primary,#a01870)}
+.moon-included ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.moon-included li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 10px;border-radius:9px;background:rgba(255,255,255,.8);font-size:13px}
+.moon-included li strong{white-space:nowrap;color:var(--primary,#a01870)}
+.moon-included-note{font-size:11px;line-height:1.5;color:var(--muted,#777);margin:9px 0 0}
 </style>
 </head>
 
 <body>
+
 
 <!-- ===== ACCOUNT GATE ===== -->
 <div id="accountGate">
@@ -2458,7 +2468,7 @@ body::selection{background:#ff4f91;color:#fff}
             class="category-card"
             onclick="chooseCategory('ตุ๊กตา')">
 
-            <div class="category-photo-wrap"><img class="category-photo" src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=900&q=85" alt="หมวดสินค้า" loading="lazy"></div>
+            <div class="category-photo-wrap"><img class="category-photo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjEyIiBmaWxsPSIjZjRiNWM5Ii8+PGNpcmNsZSBjeD0iNTAiIGN5PSI0MCIgcj0iMjAiIGZpbGw9IiNjOTk1NjUiLz48Y2lyY2xlIGN4PSIzNCIgY3k9IjI1IiByPSIxMCIgZmlsbD0iI2M5OTU2NSIvPjxjaXJjbGUgY3g9IjY2IiBjeT0iMjUiIHI9IjEwIiBmaWxsPSIjYzk5NTY1Ii8+PGVsbGlwc2UgY3g9IjUwIiBjeT0iNzIiIHJ4PSIyOCIgcnk9IjIzIiBmaWxsPSIjZThiZDk4Ii8+PGNpcmNsZSBjeD0iNDMiIGN5PSIzOSIgcj0iMiIvPjxjaXJjbGUgY3g9IjU3IiBjeT0iMzkiIHI9IjIiLz48L3N2Zz4=" alt="ภาพประกอบหมวดตุ๊กตา" loading="lazy" style="object-fit:contain"></div>
             <strong>ตุ๊กตา</strong>
             <span>Soft & Cute</span>
 
@@ -2468,7 +2478,7 @@ body::selection{background:#ff4f91;color:#fff}
             class="category-card"
             onclick="chooseCategory('เครื่องเขียน')">
 
-            <div class="category-photo-wrap"><img class="category-photo" src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=85" alt="หมวดสินค้า" loading="lazy"></div>
+            <div class="category-photo-wrap"><img class="category-photo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjEyIiBmaWxsPSIjYzliNWYyIi8+PHJlY3QgeD0iMjgiIHk9IjI0IiB3aWR0aD0iMTAiIGhlaWdodD0iNTUiIHJ4PSI0IiBmaWxsPSIjZjRhN2M1IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTggMzMgNTApIi8+PHJlY3QgeD0iNDYiIHk9IjIwIiB3aWR0aD0iMTAiIGhlaWdodD0iNjAiIHJ4PSI0IiBmaWxsPSIjOWU4YmQxIi8+PHJlY3QgeD0iNjQiIHk9IjI2IiB3aWR0aD0iMTAiIGhlaWdodD0iNTQiIHJ4PSI0IiBmaWxsPSIjOGNjOGIwIiB0cmFuc2Zvcm09InJvdGF0ZSgxOCA2OSA1MCkiLz48L3N2Zz4=" alt="ภาพประกอบหมวดเครื่องเขียน" loading="lazy" style="object-fit:contain"></div>
             <strong>เครื่องเขียน</strong>
             <span>Study With Style</span>
 
@@ -2478,7 +2488,7 @@ body::selection{background:#ff4f91;color:#fff}
             class="category-card"
             onclick="chooseCategory('แฟชั่น')">
 
-            <div class="category-photo-wrap"><img class="category-photo" src="https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=900&q=85" alt="หมวดสินค้า" loading="lazy"></div>
+            <div class="category-photo-wrap"><img class="category-photo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjEyIiBmaWxsPSIjZjZjM2Q1Ii8+PHBhdGggZD0iTTI3IDQwaDQ2bC01IDQySDMyeiIgZmlsbD0iI2Y0YThjNiIvPjxwYXRoIGQ9Ik0zOSA0MlYzMmExMSAxMSAwIDAgMSAyMiAwdjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiM5YzU0NzgiIHN0cm9rZS13aWR0aD0iNSIvPjxwYXRoIGQ9Ik01MCA1M2MtOS05LTE3IDQgMCAxNSAxNy0xMSA5LTI0IDAtMTUiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" alt="ภาพประกอบหมวดแฟชั่น" loading="lazy" style="object-fit:contain"></div>
             <strong>แฟชั่น</strong>
             <span>Daily Fashion</span>
 
@@ -2488,7 +2498,7 @@ body::selection{background:#ff4f91;color:#fff}
             class="category-card"
             onclick="chooseCategory('ของขวัญ')">
 
-            <div class="category-photo-wrap"><img class="category-photo" src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=900&q=85" alt="หมวดสินค้า" loading="lazy"></div>
+            <div class="category-photo-wrap"><img class="category-photo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjEyIiBmaWxsPSIjZWVjNGU4Ii8+PHJlY3QgeD0iMjIiIHk9IjQyIiB3aWR0aD0iNTYiIGhlaWdodD0iMzkiIHJ4PSI0IiBmaWxsPSIjZWY5ZmM0Ii8+PHJlY3QgeD0iMTgiIHk9IjM1IiB3aWR0aD0iNjQiIGhlaWdodD0iMTIiIHJ4PSIzIiBmaWxsPSIjYzQ3YmMwIi8+PHBhdGggZD0iTTUwIDM1VjgxTTUwIDM1QzI1IDM1IDMxIDE1IDQzIDIzYzUgMyA3IDEyIDcgMTJtMCAwYzI1IDAgMTktMjAgNy0xMi01IDMtNyAxMi03IDEyIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==" alt="ภาพประกอบหมวดของขวัญ" loading="lazy" style="object-fit:contain"></div>
             <strong>ของขวัญ</strong>
             <span>Perfect Gift</span>
 
@@ -2498,7 +2508,7 @@ body::selection{background:#ff4f91;color:#fff}
             class="category-card"
             onclick="chooseCategory('แต่งห้อง')">
 
-            <div class="category-photo-wrap"><img class="category-photo" src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85" alt="หมวดสินค้า" loading="lazy"></div>
+            <div class="category-photo-wrap"><img class="category-photo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjEyIiBmaWxsPSIjYzhkOWM4Ii8+PHBhdGggZD0iTTMyIDU3aDM2bC01IDI1SDM3eiIgZmlsbD0iI2Q3OWE4MyIvPjxwYXRoIGQ9Ik01MCA1OVYzMU01MCA0N0MyOCA0NyAyOCAyOCAzNyAyOGM4IDAgMTMgMTIgMTMgMTltMC03YzAtMTkgMjAtMjUgMjItMTUgMiA5LTEyIDE1LTIyIDE1IiBmaWxsPSJub25lIiBzdHJva2U9IiM1YzlhNmMiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+" alt="ภาพประกอบหมวดของตกแต่ง" loading="lazy" style="object-fit:contain"></div>
             <strong>ของตกแต่ง</strong>
             <span>Room Mood</span>
 
@@ -2508,7 +2518,7 @@ body::selection{background:#ff4f91;color:#fff}
             class="category-card"
             onclick="chooseCategory('อุปกรณ์มือถือ')">
 
-            <div class="category-photo-wrap"><img class="category-photo" src="https://images.unsplash.com/photo-1601593346740-925612772716?auto=format&fit=crop&w=900&q=85" alt="หมวดสินค้า" loading="lazy"></div>
+            <div class="category-photo-wrap"><img class="category-photo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjEyIiBmaWxsPSIjYzRkOGY1Ii8+PHJlY3QgeD0iMzQiIHk9IjE2IiB3aWR0aD0iMzIiIGhlaWdodD0iNjgiIHJ4PSI4IiBmaWxsPSIjOGU4M2JiIi8+PHJlY3QgeD0iMzgiIHk9IjI0IiB3aWR0aD0iMjQiIGhlaWdodD0iNDgiIHJ4PSIzIiBmaWxsPSIjZjhkZGViIi8+PGNpcmNsZSBjeD0iNTAiIGN5PSI3OCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" alt="ภาพประกอบหมวดมือถือ" loading="lazy" style="object-fit:contain"></div>
             <strong>มือถือ</strong>
             <span>Tech & Cute</span>
 
@@ -3806,39 +3816,15 @@ facilities:["ขนนุ่ม","28 ซม.","นุ่มมาก"]
 ];
 
 
-/* REAL PRODUCT PHOTOS — every main product gets a real photo */
-const moonProductPhotos = ['https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1601593346740-925612772716?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1589884629108-3193400c7cc6?auto=format&fit=crop&w=900&q=85'];
-/* ===== FORCE REAL IMAGE FOR EVERY PRODUCT =====
-   ใช้รูปจาก Category Rooms เป็นคลังรูปหลัก เพื่อไม่ให้สินค้าใด
-   แสดงเป็นกล่องว่าง/ไม่มีรูป และมี fallback เป็นรูปหมวดที่โหลดได้
-*/
-const specificProductImages = {
-  "ตุ๊กตาหมีน้องมูน":"https://loremflickr.com/900/700/teddy,bear,plush?lock=101",
-  "เซ็ตปากกาพาสเทล 6 สี":"https://loremflickr.com/900/700/pastel,pens,stationery?lock=102",
-  "กระเป๋าสะพาย Mini Heart":"https://loremflickr.com/900/700/mini,shoulder,handbag?lock=103",
-  "แก้วน้ำ Smile Cup":"https://loremflickr.com/900/700/cute,mug,cup?lock=104",
-  "เคสมือถือ Sweet Heart":"https://loremflickr.com/900/700/heart,phone,case?lock=105",
-  "ต้นไม้จิ๋ว Lucky Plant":"https://loremflickr.com/900/700/mini,plant,pot?lock=106",
-  "ตุ๊กตากระต่าย Pink Bunny":"https://loremflickr.com/900/700/pink,bunny,rabbit,plush?lock=107",
-  "สมุดโน้ต Daily Mood":"https://loremflickr.com/900/700/notebook,journal,pastel?lock=108",
-  "พวงกุญแจ Heart Buddy":"https://loremflickr.com/900/700/heart,keychain?lock=109",
-  "กระเป๋าผ้า Moon Tote":"https://loremflickr.com/900/700/canvas,tote,bag?lock=110",
-  "กล่องของขวัญ Happy Box":"https://loremflickr.com/900/700/gift,box,present?lock=111",
-  "ที่ตั้งโต๊ะ Mini Garden":"https://loremflickr.com/900/700/mini,garden,desk?lock=112",
-  "เคสมือถือ Star Dream":"https://loremflickr.com/900/700/star,phone,case?lock=113",
-  "ตุ๊กตาแมว Mochi Cat":"https://loremflickr.com/900/700/cat,plush,toy?lock=114"
-};
-
+/* PRODUCT VISUALS — use built-in category-matched SVGs so images do not
+   depend on third-party image hosts or stretch unpredictably. */
 function productImageTag(p){
-  const url = specificProductImages[p.name];
-  const fallback = encodeURIComponent(productSVG("#f7d8e8","#eee3f4"));
-  return `<img src="${url || ''}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,${fallback}'">`;
+  const svg = productSVG(p.type || "gift", "#f7d8e8", "#eee3f4");
+  const src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+  return `<img src="${src}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,${encodeURIComponent(productSVG("gift","#f7d8e8","#eee3f4"))}'">`;
 }
 
-products.forEach((p,i)=>{
-  p.image = productImageTag(p);
-});
-
+products.forEach(p=>{ p.image = productImageTag(p); });
 
 
 /* =========================================================
@@ -4738,6 +4724,16 @@ function openProduct(id){
                 <p class="detail-desc">
                     ${p.description}
                 </p>
+
+                <section class="moon-included" aria-label="รายการสินค้าในเซ็ต">
+                    <h3>🎁 ในเซ็ต / สิ่งที่ได้รับ</h3>
+                    <ul>
+                      ${(Array.isArray(p.contents) && p.contents.length ? p.contents : [{name:p.name, quantity:1}]).map(item => `
+                        <li><span>${item.name}</span><strong>× ${item.quantity || 1}</strong></li>
+                      `).join("")}
+                    </ul>
+                    ${p.contentsNote ? `<p class="moon-included-note">${p.contentsNote}</p>` : `<p class="moon-included-note">รายการนี้แสดงสินค้าที่ลงทะเบียนไว้ หากเป็นเซ็ตที่มีของแถม/ชิ้นย่อย ต้องเพิ่มรายการในข้อมูลสินค้าเพื่อแสดงให้ครบ</p>`}
+                </section>
 
                 <div class="facilities">
 
@@ -6044,7 +6040,7 @@ const moonRooms = {
         type: meta.type,
         tag: index < 2 ? "MOON PICK" : "NEW",
         style: meta.style,
-        image: `<img src="${imageUrl}" alt="${name}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect width="800" height="600" fill="#f7edf3"/><circle cx="400" cy="270" r="120" fill="#d9c8df"/><text x="400" y="450" text-anchor="middle" font-size="34" fill="#75677a" font-family="Arial">MOON GIFT</text></svg>`)}'">`,
+        image: `<img src="data:image/svg+xml;charset=UTF-8,${encodeURIComponent(productSVG(meta.type || "gift", "#f7d8e8", "#eee3f4"))}" alt="${name}" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">`,
         description: `สินค้า ${name} จากห้อง${category} ดีไซน์สบายตา เหมาะสำหรับใช้เองหรือมอบเป็นของขวัญ`,
         facilities: ["พร้อมส่ง","ดีไซน์น่ารัก","เหมาะเป็นของขวัญ"]
       });
@@ -6121,7 +6117,7 @@ function renderRoom(room){
         <div class="room-price">${money(real.price)}</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
           <button class="room-btn" onclick="roomAddToCart(${id})">🛒 เพิ่มลงตะกร้า</button>
-          <button class="room-btn" onclick="openProduct(${id})" style="background:#fff;color:var(--primary);border:1px solid var(--line)">👁️ ดูรายละเอียด</button>
+          <button class="room-btn" onclick="openProduct(${id})" style="background:#fff;color:var(--primary);border:1px solid var(--line)">🎁 ดูในเซ็ต / รายละเอียด</button>
         </div>
       </div></article>`;
   }).join('')}</div>`;
@@ -6193,6 +6189,10 @@ function persistMoonSystem(){
   localStorage.setItem("moonNotifications",JSON.stringify(moonNotifications));
   localStorage.setItem("moonChats",JSON.stringify(moonChats));
 }
+function hideLoginGate(){
+  const gate=document.getElementById("accountGate");
+  if(gate) gate.classList.add("hide");
+}
 function selectRole(role){
   document.getElementById("roleCustomer").classList.toggle("active",role==="customer");
   document.getElementById("roleAdmin").classList.toggle("active",role==="admin");
@@ -6209,7 +6209,7 @@ function doLogin(){
   }
   moonSession=user;
   localStorage.setItem("moonSession",JSON.stringify(user));
-  document.getElementById("accountGate").classList.add("hide");
+  hideLoginGate();
   document.getElementById("userPanel").style.display="flex";
   document.getElementById("userChip").textContent=(user.role==="admin"?"🛠️ ":"👤 ")+user.name;
   updateMoonNotificationBadge();
@@ -6326,8 +6326,48 @@ window.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("userPanel").style.display="flex";
     document.getElementById("userChip").textContent=(moonSession.role==="admin"?"🛠️ ":"👤 ")+moonSession.name;
     updateMoonNotificationBadge();
-  }else selectRole("customer");
+  }else {
+    selectRole("customer");
+  }
 });
+</script>
+
+
+<script>
+/* MOON GIFT SHOP — defensive runtime safeguards.
+   This remains a browser-only demo: orders, chat and accounts are not server-backed. */
+(function () {
+  "use strict";
+  const nativeGet = Storage.prototype.getItem;
+  const nativeSet = Storage.prototype.setItem;
+  const nativeRemove = Storage.prototype.removeItem;
+
+  // Prevent malformed JSON in persisted demo data from breaking page startup.
+  const jsonKeys = {
+    moonCart: [], moonFavorites: [], moonCoupon: null, moonOrders: [],
+    moonParcels: null, moonNotifications: null, moonChats: null,
+    moonSession: null
+  };
+  for (const [key, fallback] of Object.entries(jsonKeys)) {
+    try {
+      const raw = nativeGet.call(localStorage, key);
+      if (raw !== null) {
+        JSON.parse(raw);
+      }
+    } catch (_) {
+      try {
+        nativeRemove.call(localStorage, key);
+      } catch (_) {}
+    }
+  }
+
+  // Provide a clear warning if browser storage is unavailable or full.
+  window.addEventListener("error", function (event) {
+    if (event && event.message && /localStorage|quota/i.test(event.message)) {
+      console.warn("MOON GIFT SHOP: browser storage is unavailable; saved demo data may not persist.");
+    }
+  });
+})();
 </script>
 
 </body>
